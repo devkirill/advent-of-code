@@ -5,7 +5,15 @@ import java.security.MessageDigest
 /**
  * Reads lines from the given input txt file.
  */
-fun readInput(name: String) = File("src", "$name.txt").readLines()
+fun readInput(name: String): List<String> {
+    val file = File("src\\main\\resources", "$name.txt")
+    try {
+        return file.readLines()
+    } catch (e: Throwable) {
+        println(file.absolutePath)
+        throw e
+    }
+}
 
 /**
  * Converts string to md5 hash.
