@@ -1,4 +1,5 @@
 import java.io.File
+import java.lang.IllegalStateException
 import java.math.BigInteger
 import java.security.MessageDigest
 
@@ -19,3 +20,9 @@ fun readInput(name: String): List<String> {
  * Converts string to md5 hash.
  */
 fun String.md5(): String = BigInteger(1, MessageDigest.getInstance("MD5").digest(toByteArray())).toString(16)
+
+fun assertEquals(actual: Any?, expected: Any?) {
+    if (actual != expected) {
+        throw IllegalStateException("$actual != $expected")
+    }
+}
