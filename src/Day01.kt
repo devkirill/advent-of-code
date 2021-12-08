@@ -10,14 +10,11 @@ fun main() {
     }
 
     fun part2(input: List<Int>): Int {
-        var sum = input[0] + input[1] + input[2]
         var result = 0
         for (i in 3 until input.size) {
-            val newSum = sum + input[i] - input[i - 3]
-            if (newSum > sum) {
+            if (input[i] > input[i - 3]) {
                 result++
             }
-            sum = newSum
         }
         return result
     }
