@@ -22,7 +22,9 @@ fun readInput(name: String): List<String> {
 fun String.md5(): String = BigInteger(1, MessageDigest.getInstance("MD5").digest(toByteArray())).toString(16)
 
 fun assertEquals(actual: Any?, expected: Any?) {
-    if (actual != expected) {
+    if (actual.toString() != expected.toString()) {
         throw IllegalStateException("$actual != $expected")
     }
 }
+
+fun debug(vararg str: Any?) = System.err.println(str.toList().joinToString(" ") { "$it" })
