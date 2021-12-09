@@ -28,3 +28,7 @@ fun assertEquals(actual: Any?, expected: Any?) {
 }
 
 fun debug(vararg str: Any?) = System.err.println(str.toList().joinToString(" ") { "$it" })
+
+operator fun <T> Set<T>.contains(other: Collection<T>): Boolean {
+    return other.all { it in this }
+}
