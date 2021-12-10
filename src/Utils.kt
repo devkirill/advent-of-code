@@ -1,5 +1,4 @@
 import java.io.File
-import java.lang.IllegalStateException
 import java.math.BigInteger
 import java.security.MessageDigest
 
@@ -44,3 +43,5 @@ fun Point.nearby8() = (-1..1)
     .flatMap { x -> (-1..1).map { y -> Point(x, y) } }
     .filter { it.x != 0 && it.y != 0 }
     .map { this + it }
+
+fun <T> List<T>.middle() = this[size / 2]
