@@ -41,7 +41,17 @@ data class Point(val x: Int, val y: Int) {
 fun Point.nearby4() = listOf(Point(-1, 0), Point(1, 0), Point(0, -1), Point(0, 1)).map { this + it }
 fun Point.nearby8() = (-1..1)
     .flatMap { x -> (-1..1).map { y -> Point(x, y) } }
-    .filter { it.x != 0 && it.y != 0 }
+    .filter { it.x != 0 || it.y != 0 }
     .map { this + it }
 
 fun <T> List<T>.middle() = this[size / 2]
+
+data class Matrix(val x: IntRange, val y: IntRange) {
+    constructor(fromX: Int, toX: Int, fromY: Int, toY: Int) : this(fromX..toX, fromY..toY)
+
+    val indices: Set<Point> by lazy { x.flatMap { x -> y.map { y -> Point(x, y) } }.toSet() }
+
+    operator fun contains(p: Point) = p in indices
+}
+
+operator fun List<String>.get(p: Point) = this[p.x][p.y]
