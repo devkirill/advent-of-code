@@ -55,3 +55,4 @@ data class Matrix(val x: IntRange, val y: IntRange) {
 }
 
 operator fun List<String>.get(p: Point) = this[p.x][p.y]
+operator fun <T> List<List<T>>.get(p: Point) = this[p.x][p.y]
