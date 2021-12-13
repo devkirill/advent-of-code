@@ -6,7 +6,7 @@ import java.security.MessageDigest
  * Reads lines from the given input txt file.
  */
 fun readInput(name: String): List<String> {
-    val file = File("src\\main\\resources", "$name.txt")
+    val file = File("src\\resources", "$name.txt")
     try {
         return file.readLines()
     } catch (e: Throwable) {
@@ -36,6 +36,17 @@ data class Point(val x: Int, val y: Int) {
     operator fun plus(p: Point) = Point(x + p.x, y + p.y)
     operator fun minus(p: Point) = Point(x + p.x, y + p.y)
     operator fun times(p: Point) = Point(x * p.x, y * p.y)
+    fun by(lambda: Builder.() -> Unit): Point {
+        val builder = Builder(this)
+        lambda(builder)
+        return builder.build()
+    }
+
+    data class Builder(var x: Int, var y: Int) {
+        constructor(p: Point) : this(p.x, p.y)
+
+        fun build() = Point(x, y)
+    }
 }
 
 fun Point.nearby4() = listOf(Point(-1, 0), Point(1, 0), Point(0, -1), Point(0, 1)).map { this + it }
@@ -56,3 +67,12 @@ data class Matrix(val x: IntRange, val y: IntRange) {
 
 operator fun List<String>.get(p: Point) = this[p.x][p.y]
 operator fun <T> List<List<T>>.get(p: Point) = this[p.x][p.y]
+
+fun List<String>.toInt() = this.map { it.toInt() }
+fun List<Int>.toPoint() = Point(this[0], this[1])
+fun List<String>.toIntPoint() = this.toInt().toPoint()
+fun List<String>.toIntPoints(delimiter: String) = this.map { it.split(delimiter).toIntPoint() }
+fun String.splitPair(delimiter: String): Pair<String, String> {
+    val a = this.split(delimiter)
+    return Pair(a[0], a[1])
+}
