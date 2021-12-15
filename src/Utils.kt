@@ -34,8 +34,9 @@ operator fun <T> Set<T>.contains(other: Collection<T>): Boolean {
 
 data class Point(val x: Int, val y: Int) {
     operator fun plus(p: Point) = Point(x + p.x, y + p.y)
-    operator fun minus(p: Point) = Point(x + p.x, y + p.y)
-    operator fun times(p: Point) = Point(x * p.x, y * p.y)
+    operator fun minus(p: Point) = Point(x - p.x, y - p.y)
+    operator fun times(a: Int) = Point(x * a, y * a)
+    operator fun div(a: Int) = Point(x / a, y / a)
     fun by(lambda: Builder.() -> Unit): Point {
         val builder = Builder(this)
         lambda(builder)
@@ -76,3 +77,6 @@ fun String.splitPair(delimiter: String): Pair<String, String> {
     val a = this.split(delimiter)
     return Pair(a[0], a[1])
 }
+
+operator fun String.get(range: IntRange) = this.substring(range)
+operator fun <T> List<T>.get(range: IntRange) = this.subList(range.first, range.last + 1)
