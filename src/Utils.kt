@@ -1,4 +1,5 @@
 import java.io.File
+import java.lang.Integer.min
 import java.math.BigInteger
 import java.security.MessageDigest
 
@@ -80,3 +81,45 @@ fun String.splitPair(delimiter: String): Pair<String, String> {
 
 operator fun String.get(range: IntRange) = this.substring(range)
 operator fun <T> List<T>.get(range: IntRange) = this.subList(range.first, range.last + 1)
+
+fun <T> MutableList<T>.pop(): T {
+    val last = this.last()
+    this.removeAt(this.size - 1)
+    return last
+}
+
+fun <T> MutableList<T>.push(e: T) {
+    this += e
+}
+
+object Levenshtein {
+    fun <T> distance(l: List<T>, r: List<T>): Int {
+        val lLength = l.size
+        val rLength = r.size
+
+        var cost = Array(lLength + 1) { it }
+        var newCost = Array(lLength + 1) { 0 }
+
+        for (i in 1..rLength) {
+            newCost[0] = i
+
+            for (j in 1..lLength) {
+                val match = if (l[j - 1] == r[i - 1]) 0 else 1
+
+                val costReplace = cost[j - 1] + match
+                val costInsert = cost[j] + 1
+                val costDelete = newCost[j - 1] + 1
+
+                newCost[j] = min(min(costInsert, costDelete), costReplace)
+            }
+
+            val swap = cost
+            cost = newCost
+            newCost = swap
+        }
+
+        return cost[lLength]
+    }
+
+    fun distance(l: String, r: String): Int = distance(l.toList(), r.toList())
+}
