@@ -123,3 +123,48 @@ object Levenshtein {
 
     fun distance(l: String, r: String): Int = distance(l.toList(), r.toList())
 }
+
+/**
+ * https://neerc.ifmo.ru/wiki/index.php?title=%D0%94%D0%B2%D0%BE%D0%B8%D1%87%D0%BD%D0%B0%D1%8F_%D0%BA%D1%83%D1%87%D0%B0
+ */
+private fun <T : Comparable<T>> MutableList<T>.heapSiftDown(it: Int) {
+    var i = it
+    while (2 * i + 1 < size) {
+        val left = 2 * i + 1
+        val right = 2 * i + 1
+        val j = if (right < size && this[right] < this[left]) right else left
+        if (this[i] <= this[j])
+            break
+        val t = this[i]
+        this[i] = this[j]
+        this[j] = t
+        i = j
+    }
+}
+
+private fun <T : Comparable<T>> MutableList<T>.heapSiftUp(it: Int) {
+    var i = it
+    while (this[i] < this[(i - 1) / 2]) {
+        val t = this[i]
+        this[i] = this[(i - 1) / 2]
+        this[(i - 1) / 2] = t
+        i = (i - 1) / 2
+    }
+}
+
+fun <T : Comparable<T>> MutableList<T>.heapPush(element: T) {
+    add(element)
+    this.heapSiftUp(size - 1)
+}
+
+fun <T : Comparable<T>> MutableList<T>.heapPop(): T {
+    // TODO update
+    val a = this.minOf { it }
+    remove(a)
+    return a
+//    val result = this[0]
+//    this[0] = this.last()
+//    this.removeAt(this.size - 1)
+//    heapSiftDown(0)
+//    return result
+}
