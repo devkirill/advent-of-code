@@ -168,3 +168,9 @@ fun <T : Comparable<T>> MutableList<T>.heapPop(): T {
 //    heapSiftDown(0)
 //    return result
 }
+
+data class PairTuple<A : Comparable<A>, B>(val first: A, val second: B) : Comparable<PairTuple<A, B>> {
+    override fun compareTo(other: PairTuple<A, B>): Int {
+        return first.compareTo(other.first)
+    }
+}

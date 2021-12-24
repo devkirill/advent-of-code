@@ -1,9 +1,3 @@
-data class PairTuple(val cost: Int, val p: Point) : Comparable<PairTuple> {
-    override fun compareTo(other: PairTuple): Int {
-        return this.cost.compareTo(other.cost)
-    }
-}
-
 fun main() {
     fun part1(input: List<String>): Int {
         var result = 0
