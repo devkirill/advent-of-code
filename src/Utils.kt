@@ -174,3 +174,5 @@ data class PairTuple<A : Comparable<A>, B>(val first: A, val second: B) : Compar
         return first.compareTo(other.first)
     }
 }
+
+fun <A, B> List<Pair<A, B>>.toMutableMap() = toMap().toMutableMap()
