@@ -7,13 +7,29 @@ import java.security.MessageDigest
  * Reads lines from the given input txt file.
  */
 fun readInput(name: String): List<String> {
-    val file = File("src\\resources", "$name.txt")
+    val file = File("src/resources", "$name.txt")
     try {
         return file.readLines()
     } catch (e: Throwable) {
         println(file.absolutePath)
         throw e
     }
+}
+
+fun <T> runSolve(day: Int, testSolve: T, solve : (List<String>) -> T) {
+    val testInput = readInput("Day${day}_test")
+    assertEquals(solve(testInput), testSolve)
+
+    val input = readInput("Day$day")
+    println(solve(input))
+}
+
+fun <T> runSolveCount(day: Int, count: Int, testSolve: T, solve : (List<String>, Int) -> T) {
+    val testInput = readInput("Day${day}_test")
+    assertEquals(solve(testInput, count), testSolve)
+
+    val input = readInput("Day$day")
+    println(solve(input, count))
 }
 
 /**
@@ -32,6 +48,8 @@ fun debug(vararg str: Any?) = System.err.println(str.toList().joinToString(" ") 
 operator fun <T> Set<T>.contains(other: Collection<T>): Boolean {
     return other.all { it in this }
 }
+
+//region Point
 
 data class Point(val x: Int, val y: Int) {
     operator fun plus(p: Point) = Point(x + p.x, y + p.y)
@@ -52,10 +70,15 @@ data class Point(val x: Int, val y: Int) {
 }
 
 fun Point.nearby4() = listOf(Point(-1, 0), Point(1, 0), Point(0, -1), Point(0, 1)).map { this + it }
+fun Point.around() = (-1..1)
+    .flatMap { y -> (-1..1).map { x -> Point(x, y) } }
+    .map { this + it }
 fun Point.nearby8() = (-1..1)
-    .flatMap { x -> (-1..1).map { y -> Point(x, y) } }
+    .flatMap { y -> (-1..1).map { x -> Point(x, y) } }
     .filter { it.x != 0 || it.y != 0 }
     .map { this + it }
+
+//endregion
 
 fun <T> List<T>.middle() = this[size / 2]
 
@@ -81,16 +104,6 @@ fun String.splitPair(delimiter: String): Pair<String, String> {
 
 operator fun String.get(range: IntRange) = this.substring(range)
 operator fun <T> List<T>.get(range: IntRange) = this.subList(range.first, range.last + 1)
-
-fun <T> MutableList<T>.pop(): T {
-    val last = this.last()
-    this.removeAt(this.size - 1)
-    return last
-}
-
-fun <T> MutableList<T>.push(e: T) {
-    this += e
-}
 
 object Levenshtein {
     fun <T> distance(l: List<T>, r: List<T>): Int {
@@ -123,6 +136,18 @@ object Levenshtein {
 
     fun distance(l: String, r: String): Int = distance(l.toList(), r.toList())
 }
+
+fun <T> MutableList<T>.pop(): T {
+    val last = this.last()
+    this.removeAt(this.size - 1)
+    return last
+}
+
+fun <T> MutableList<T>.push(e: T) {
+    this += e
+}
+
+//region heap
 
 fun <T : Comparable<T>> MutableList<T>.heapify(p: Int) {
     var i = p
@@ -166,10 +191,26 @@ fun <T : Comparable<T>> MutableList<T>.heapPop(): T {
     return result
 }
 
+//endregion
+
+//region tuple
+
 data class PairTuple<A : Comparable<A>, B>(val first: A, val second: B) : Comparable<PairTuple<A, B>> {
     override fun compareTo(other: PairTuple<A, B>): Int {
         return first.compareTo(other.first)
     }
 }
+
+fun <A : Comparable<A>, B> tuple(first: A, second: B) = PairTuple(first, second)
+
+fun <A : Comparable<A>, B> tuple(pair: Pair<A, B>) = tuple(pair.first, pair.second)
+
+//endregion
+
+//fun minMax(list: List<Int>) = (list.minOrNull() ?: 0) to (list.maxOrNull() ?: 0)
+
+fun Collection<Int>.range() = (minOrNull() ?: 0)..(maxOrNull() ?: 0)
+
+fun IntRange.extend(size: Int = 1) = (first - size)..(last + size)
 
 fun <A, B> List<Pair<A, B>>.toMutableMap() = toMap().toMutableMap()
