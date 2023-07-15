@@ -2,11 +2,10 @@ package advent.calendar.aoc.solutions.y2021
 
 import advent.calendar.aoc.Solution
 import org.springframework.stereotype.Component
-import org.springframework.stereotype.Service
 
 @Component
 class Day01 : Solution<List<Int>, Int>(2021, 1) {
-    override fun parseInput(lines: List<String>) = lines.map { it.toInt() }
+    override fun parse(lines: List<String>) = lines.map { it.toInt() }
 
     override fun part1(input: List<Int>): Int {
         var result = 0
