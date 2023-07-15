@@ -1,3 +1,8 @@
+import advent.calendar.aoc.solutions.utils.Point
+import advent.calendar.aoc.solutions.utils.assertEquals
+import advent.calendar.aoc.solutions.utils.nearby4
+import advent.calendar.aoc.solutions.utils.readInput
+
 fun main() {
     fun part1(input: List<String>): Int {
         var result = 0

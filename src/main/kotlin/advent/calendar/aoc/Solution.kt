@@ -7,9 +7,9 @@ abstract class Solution<T, R: Number>(val year: Int, val day: Int) {
 
     open fun parse2(lines: List<String>) = parse(lines)
 
-    abstract fun part1(t: T): R
+    abstract fun part1(input: T): R
 
-    open fun part2(t: T): R {
+    open fun part2(input: T): R {
         throw NotReleased()
     }
 }

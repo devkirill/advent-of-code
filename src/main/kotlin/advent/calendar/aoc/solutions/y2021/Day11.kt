@@ -1,5 +1,15 @@
-fun main() {
-    fun part1(input: List<String>): Int {
+package advent.calendar.aoc.solutions.y2021
+
+import advent.calendar.aoc.Solution
+import advent.calendar.aoc.solutions.utils.Matrix
+import advent.calendar.aoc.solutions.utils.nearby8
+import org.springframework.stereotype.Component
+
+@Component
+class Day11 : Solution<List<String>, Int>(2021, 11) {
+    override fun parse(lines: List<String>) = lines
+
+    override fun part1(input: List<String>): Int {
         val matrix = Matrix(input.indices, input[0].indices)
         val map = matrix.indices.associateWith { input[it].toString().toInt() }.toMutableMap()
 
@@ -24,7 +34,7 @@ fun main() {
         return result
     }
 
-    fun part2(input: List<String>): Int {
+    override fun part2(input: List<String>): Int {
         val matrix = Matrix(input.indices, input[0].indices)
         val map = matrix.indices.associateWith { input[it].toString().toInt() }.toMutableMap()
 
@@ -48,12 +58,4 @@ fun main() {
         }
         return result
     }
-
-    val testInput = readInput("Day11_test")
-    assertEquals(part1(testInput), 1656)
-    assertEquals(part2(testInput), 195)
-
-    val input = readInput("Day11")
-    println(part1(input))
-    println(part2(input))
 }

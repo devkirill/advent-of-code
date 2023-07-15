@@ -1,3 +1,7 @@
+import advent.calendar.aoc.solutions.utils.assertEquals
+import advent.calendar.aoc.solutions.utils.contains
+import advent.calendar.aoc.solutions.utils.readInput
+
 fun main() {
     fun part1(input: List<String>): Int {
         var result = 0

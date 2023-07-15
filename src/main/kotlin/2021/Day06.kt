@@ -1,3 +1,6 @@
+import advent.calendar.aoc.solutions.utils.assertEquals
+import advent.calendar.aoc.solutions.utils.readInput
+
 fun main() {
     fun part1(input: List<String>): Int {
         val l = input[0].split(",").map(String::toInt)

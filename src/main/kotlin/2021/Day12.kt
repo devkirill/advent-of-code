@@ -1,3 +1,7 @@
+import advent.calendar.aoc.solutions.utils.assertEquals
+import advent.calendar.aoc.solutions.utils.debug
+import advent.calendar.aoc.solutions.utils.readInput
+
 fun main() {
     fun String.small() = this[0] in 'a'..'z'
 

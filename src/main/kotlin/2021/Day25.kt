@@ -1,3 +1,5 @@
+import advent.calendar.aoc.solutions.utils.*
+
 fun main() {
     fun part1(input: List<String>): Int {
         var map =

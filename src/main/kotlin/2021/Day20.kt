@@ -1,3 +1,8 @@
+import advent.calendar.aoc.solutions.utils.Point
+import advent.calendar.aoc.solutions.utils.around
+import advent.calendar.aoc.solutions.utils.extend
+import advent.calendar.aoc.solutions.utils.runSolve
+
 fun main() {
     fun run(input: List<String>, times: Int): Int {
         val a = input.first().mapIndexed { i, c -> i to c }.filter { it.second == '#' }.map { it.first }

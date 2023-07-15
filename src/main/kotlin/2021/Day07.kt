@@ -1,3 +1,5 @@
+import advent.calendar.aoc.solutions.utils.assertEquals
+import advent.calendar.aoc.solutions.utils.readInput
 import kotlin.math.abs
 
 fun main() {

@@ -26,15 +26,4 @@ class Day01 : Solution<List<Int>, Int>(2021, 1) {
         }
         return result
     }
-
-//    fun read(name: String) = readInput(name).map { it.toInt() }
-//
-//    // test if implementation meets criteria from the description, like:
-//    val testInput = read("Day01_test")
-//    assertEquals(part1(testInput), 7)
-//    assertEquals(part2(testInput), 5)
-//
-//    val input = read("Day01")
-//    println(part1(input))
-//    println(part2(input))
 }

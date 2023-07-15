@@ -1,6 +1,7 @@
 package advent.calendar.aoc
 
 import advent.calendar.aoc.exceptions.NotReleased
+import advent.calendar.aoc.utils.ConsoleColors
 import jakarta.annotation.PostConstruct
 import org.springframework.beans.factory.annotation.Autowired
 import org.springframework.stereotype.Service
@@ -12,28 +13,33 @@ class Testing(
 ) {
     @PostConstruct
     fun init() {
-        solutions.forEach { solution ->
+        solutions.sortedBy { it.day }.sortedByDescending { it.year }.forEach { solution ->
             solution.calculate()
         }
-
-//        Utils.send(2022, 2, 1, 123)
-//        AOC.send(2022, 1, 1, "123")
-//        AOC.send(2022, 1, 1, "456")
-//        AOC.send(2022, 1, 1, "69310")
     }
 
     fun <A, B : Number> Solution<A, B>.calculate() {
         val lines = AOC.input(year, day)
+        val answers = AOC.getAnswers()
+        print("$year/${day / 10}${day % 10} ")
+        test(lines, answers, 1)
+        test(lines, answers, 2)
+        println()
+    }
+
+    fun <T, R : Number> Solution<T, R>.test(lines: List<String>, answers: List<Answer>, level: Int) {
         try {
+            if (answers.any { it.year == year && it.day == day && it.valid }) {
+                return
+            }
             val input = parse(lines)
-            val res1 = part1(input).toString()
-            AOC.send(year, day, 1, res1)
-        } catch (_: NotReleased) {
-        }
-        try {
-            val input = parse2(lines)
-            val res2 = part2(input).toString()
-            AOC.send(year, day, 2, res2)
+            val answer = (if (level == 1) part1(input) else part2(input)).toString()
+            val result = AOC.send(year, day, level, answer)
+            if (result) {
+                print("${ConsoleColors.GREEN}✔${ConsoleColors.RESET}")
+            } else {
+                print("${ConsoleColors.RED}✖${ConsoleColors.RESET}")
+            }
         } catch (_: NotReleased) {
         }
     }

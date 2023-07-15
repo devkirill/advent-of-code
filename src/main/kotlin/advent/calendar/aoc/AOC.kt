@@ -63,11 +63,11 @@ object AOC {
         val content = String((con.content as InputStream).readAllBytes())
         when {
             "That's the right answer" in content -> {
-                Logger.ok("That's the right answer")
+//                Logger.ok("That's the right answer")
             }
 
             "Did you already complete it" in content -> {
-                Logger.warn("Did you already complete it")
+//                Logger.warn("Did you already complete it")
                 val problemText = readUrl("https://adventofcode.com/$year/day/$day")
                 if ("<p>Your puzzle answer was <code>$answer</code>.</p>" !in problemText) {
                     throw WrongAnswer()
@@ -75,7 +75,7 @@ object AOC {
             }
 
             "That's not the right answer" in content -> {
-                Logger.error("That's not the right answer")
+//                Logger.error("That's not the right answer")
                 throw WrongAnswer()
             }
 
@@ -102,7 +102,7 @@ object AOC {
         return content
     }
 
-    private fun getAnswers(): List<Answer> {
+    fun getAnswers(): List<Answer> {
         val file = File("result.csv")
         return if (file.exists())
             csvReader().readAll(File("result.csv")).map { Answer(it) }

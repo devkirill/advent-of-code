@@ -1,3 +1,4 @@
+import advent.calendar.aoc.solutions.utils.*
 import kotlin.math.abs
 
 fun main() {

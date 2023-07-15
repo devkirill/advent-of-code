@@ -1,3 +1,7 @@
+import advent.calendar.aoc.solutions.utils.Matrix
+import advent.calendar.aoc.solutions.utils.Point
+import advent.calendar.aoc.solutions.utils.assertEquals
+
 fun main() {
     fun solves(input: Matrix) = Matrix(1..input.x.last, input.y.first..100)
         .indices

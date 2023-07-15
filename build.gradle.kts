@@ -23,6 +23,7 @@ dependencies {
 	implementation("org.jetbrains.kotlin:kotlin-reflect")
 	testImplementation("org.springframework.boot:spring-boot-starter-test")
 	implementation("com.github.doyaaaaaken:kotlin-csv-jvm:1.9.1")
+	implementation("org.reflections:reflections:0.10.2")
 }
 
 tasks.withType<KotlinCompile> {

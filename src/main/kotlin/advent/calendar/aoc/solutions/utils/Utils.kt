@@ -1,3 +1,5 @@
+package advent.calendar.aoc.solutions.utils
+
 import java.io.File
 import java.lang.Integer.min
 import java.math.BigInteger

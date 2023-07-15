@@ -1,11 +1,18 @@
 package advent.calendar.aoc
 
+import org.reflections.Reflections
 import org.springframework.boot.autoconfigure.SpringBootApplication
-import org.springframework.boot.runApplication
 
 @SpringBootApplication
 class AocApplication
 
-fun main(args: Array<String>) {
-	runApplication<AocApplication>(*args)
+fun main() {
+//	runApplication<AocApplication>(*args)
+
+	val reflections = Reflections("advent.calendar.aoc.solutions")
+	val solutions = reflections.getSubTypesOf(Solution::class.java).map {
+		val ctor = it.getConstructor()
+		ctor.newInstance()
+	}
+	Testing(solutions).init()
 }
