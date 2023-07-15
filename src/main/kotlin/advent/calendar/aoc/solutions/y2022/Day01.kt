@@ -1,3 +1,8 @@
+package advent.calendar.aoc.solutions.y2022
+
+import assertEquals
+import readInput
+
 fun main() {
     fun prep(input: List<String>): List<Int> {
         var result = listOf<Int>()
