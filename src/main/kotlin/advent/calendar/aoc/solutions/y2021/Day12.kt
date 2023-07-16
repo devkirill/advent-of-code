@@ -1,11 +1,16 @@
-import advent.calendar.aoc.solutions.utils.assertEquals
-import advent.calendar.aoc.solutions.utils.debug
-import advent.calendar.aoc.solutions.utils.readInput
+package advent.calendar.aoc.solutions.y2021
 
-fun main() {
+import advent.calendar.aoc.Solution
+import advent.calendar.aoc.solutions.utils.debug
+import org.springframework.stereotype.Component
+
+@Component
+class Day12 : Solution<List<String>>(2021, 12) {
+    override fun parse(lines: List<String>) = lines
+
     fun String.small() = this[0] in 'a'..'z'
 
-    fun part1(input: List<String>): Int {
+    override fun part1(input: List<String>): Int {
         val graph = mutableMapOf<String, List<String>>()
         input.forEach {
             val a = it.split("-")
@@ -27,7 +32,7 @@ fun main() {
         return find(listOf("start"), "start")
     }
 
-    fun part2(input: List<String>): Int {
+    override fun part2(input: List<String>): Int {
         val graph = mutableMapOf<String, List<String>>()
         input.forEach {
             val a = it.split("-")
@@ -55,12 +60,4 @@ fun main() {
         }
         return find(listOf("start"), "start")
     }
-
-    val testInput = readInput("Day12_test")
-    assertEquals(part1(testInput), 10)
-    assertEquals(part2(testInput), 36)
-
-    val input = readInput("Day12")
-    println(part1(input))
-    println(part2(input))
 }

@@ -1,7 +1,27 @@
-import advent.calendar.aoc.solutions.utils.*
+package advent.calendar.aoc.solutions.y2021
 
-fun main() {
-    fun part1(input: List<String>): Int {
+import advent.calendar.aoc.Solution
+import advent.calendar.aoc.solutions.utils.Point
+import advent.calendar.aoc.solutions.utils.toMutableMap
+import org.springframework.stereotype.Component
+import kotlin.collections.List
+import kotlin.collections.component1
+import kotlin.collections.component2
+import kotlin.collections.contains
+import kotlin.collections.filter
+import kotlin.collections.flatMap
+import kotlin.collections.forEach
+import kotlin.collections.indices
+import kotlin.collections.listOf
+import kotlin.collections.map
+import kotlin.collections.mutableMapOf
+import kotlin.collections.set
+
+@Component
+class Day25 : Solution<List<String>>(2021, 25) {
+    override fun parse(lines: List<String>) = lines
+
+    override fun part1(input: List<String>): Int {
         var map =
             input.indices.flatMap { y -> input[y].mapIndexed { x, c -> Point(x, y) to c } }.filter { it.second != '.' }
                 .toMutableMap()
@@ -35,19 +55,13 @@ fun main() {
                 map = newMap
             }
 
-            debug(steps)
-            for (y in input.indices) {
-                debug((input[0].indices).joinToString("") { (map[Point(it, y)] ?: '.').toString() })
-            }
+//            debug(steps)
+//            for (y in input.indices) {
+//                debug((input[0].indices).joinToString("") { (map[Point(it, y)] ?: '.').toString() })
+//            }
 
             steps++
         } while (changed)
         return steps
     }
-
-    val testInput = readInput("Day25_test")
-    assertEquals(part1(testInput), 58)
-
-    val input = readInput("Day25")
-    println(part1(input))
 }

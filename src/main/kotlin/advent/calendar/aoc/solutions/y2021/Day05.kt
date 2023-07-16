@@ -7,7 +7,7 @@ import org.springframework.stereotype.Component
 import kotlin.math.abs
 
 @Component
-class Day05 : Solution<List<String>, Int>(2021, 5) {
+class Day05 : Solution<List<String>>(2021, 5) {
     override fun parse(lines: List<String>) = lines
 
     override fun part1(input: List<String>): Int {

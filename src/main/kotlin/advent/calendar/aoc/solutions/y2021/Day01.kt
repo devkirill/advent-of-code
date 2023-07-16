@@ -4,7 +4,7 @@ import advent.calendar.aoc.Solution
 import org.springframework.stereotype.Component
 
 @Component
-class Day01 : Solution<List<Int>, Int>(2021, 1) {
+class Day01 : Solution<List<Int>>(2021, 1) {
     override fun parse(lines: List<String>) = lines.map { it.toInt() }
 
     override fun part1(input: List<Int>): Int {

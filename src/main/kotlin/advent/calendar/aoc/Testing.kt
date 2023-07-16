@@ -3,14 +3,9 @@ package advent.calendar.aoc
 import advent.calendar.aoc.exceptions.NotReleased
 import advent.calendar.aoc.utils.ConsoleColors
 import jakarta.annotation.PostConstruct
-import org.springframework.beans.factory.annotation.Autowired
-import org.springframework.stereotype.Service
+import java.util.*
 
-@Service
-class Testing(
-    @Autowired
-    val solutions: List<Solution<*, *>>
-) {
+class Testing(val solutions: List<Solution<*>>) {
     @PostConstruct
     fun init() {
         solutions.sortedBy { it.day }.sortedByDescending { it.year }.forEach { solution ->
@@ -18,20 +13,34 @@ class Testing(
         }
     }
 
-    fun <A, B : Number> Solution<A, B>.calculate() {
+    fun <T> Solution<T>.calculate() {
         val lines = AOC.input(year, day)
-        val answers = AOC.getAnswers()
-        print("$year/${day / 10}${day % 10} ")
-        test(lines, answers, 1)
-        test(lines, answers, 2)
-        println()
+        val answers = AOC.getAnswers().filter { it.year == year && it.day == day && it.valid }
+        val begin = Date().time
+        var started = false
+        if (answers.none { it.level == 1 }) {
+            print("$year-${day / 10}${day % 10} ")
+            test(lines, 1)
+            started = true
+        }
+        if (answers.none { it.level == 2 } && day != 25) {
+            if (!started) {
+                print("$year-${day / 10}${day % 10} .")
+            }
+            test(lines, 2)
+            started = true
+        }
+        val end = Date().time
+        if (end - begin > 5000L) {
+            print(" at ${end - begin}ms")
+        }
+        if (started) {
+            println()
+        }
     }
 
-    fun <T, R : Number> Solution<T, R>.test(lines: List<String>, answers: List<Answer>, level: Int) {
+    fun <T> Solution<T>.test(lines: List<String>, level: Int) {
         try {
-            if (answers.any { it.year == year && it.day == day && it.valid }) {
-                return
-            }
             val input = parse(lines)
             val answer = (if (level == 1) part1(input) else part2(input)).toString()
             val result = AOC.send(year, day, level, answer)
@@ -41,6 +50,8 @@ class Testing(
                 print("${ConsoleColors.RED}✖${ConsoleColors.RESET}")
             }
         } catch (_: NotReleased) {
+        } catch (e: Throwable) {
+            e.printStackTrace()
         }
     }
 }

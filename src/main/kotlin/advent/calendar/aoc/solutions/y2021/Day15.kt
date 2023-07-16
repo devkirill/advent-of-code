@@ -1,7 +1,14 @@
-import advent.calendar.aoc.solutions.utils.*
+package advent.calendar.aoc.solutions.y2021
 
-fun main() {
-    fun part1(input: List<String>): Int {
+import advent.calendar.aoc.Solution
+import advent.calendar.aoc.solutions.utils.*
+import org.springframework.stereotype.Component
+
+@Component
+class Day15 : Solution<List<String>>(2021, 15) {
+    override fun parse(lines: List<String>) = lines
+
+    override fun part1(input: List<String>): Int {
         var result = 0
         val g = input.indices.flatMap { y ->
             (0 until input[y].length).map { x ->
@@ -26,7 +33,7 @@ fun main() {
         return map[to]!!
     }
 
-    fun part2(input: List<String>): Int {
+    override fun part2(input: List<String>): Int {
         val g = input.indices.flatMap { y ->
             (0 until input[y].length).map { x ->
                 Point(x, y) to input[y][x].toString().toInt()
@@ -69,12 +76,4 @@ fun main() {
 
         return map[to]!!
     }
-
-    val testInput = readInput("Day15_test")
-    assertEquals(part1(testInput), 40)
-    assertEquals(part2(testInput), 315)
-
-    val input = readInput("Day15")
-    println(part1(input))
-    println(part2(input))
 }

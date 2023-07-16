@@ -1,10 +1,15 @@
-import advent.calendar.aoc.solutions.utils.Point
-import advent.calendar.aoc.solutions.utils.assertEquals
-import advent.calendar.aoc.solutions.utils.nearby4
-import advent.calendar.aoc.solutions.utils.readInput
+package advent.calendar.aoc.solutions.y2021
 
-fun main() {
-    fun part1(input: List<String>): Int {
+import advent.calendar.aoc.Solution
+import advent.calendar.aoc.solutions.utils.Point
+import advent.calendar.aoc.solutions.utils.nearby4
+import org.springframework.stereotype.Component
+
+@Component
+class Day09 : Solution<List<String>>(2021, 9) {
+    override fun parse(lines: List<String>) = lines
+
+    override fun part1(input: List<String>): Int {
         var result = 0
         for (x in input.indices) {
             for (y in input[x].indices) {
@@ -21,7 +26,7 @@ fun main() {
         return result
     }
 
-    fun part2(input: List<String>): Int {
+    override fun part2(input: List<String>): Int {
         val lower = mutableListOf<Point>()
         for (x in input.indices) {
             for (y in input[x].indices) {
@@ -59,12 +64,4 @@ fun main() {
         }
         return total.sortedDescending().take(3).reduce { x, y -> x * y }
     }
-
-    val testInput = readInput("Day09_test")
-    assertEquals(part1(testInput), 15)
-    assertEquals(part2(testInput), 1134)
-
-    val input = readInput("Day09")
-    println(part1(input))
-    println(part2(input))
 }

@@ -1,9 +1,14 @@
-import advent.calendar.aoc.solutions.utils.assertEquals
-import advent.calendar.aoc.solutions.utils.contains
-import advent.calendar.aoc.solutions.utils.readInput
+package advent.calendar.aoc.solutions.y2021
 
-fun main() {
-    fun part1(input: List<String>): Int {
+import advent.calendar.aoc.Solution
+import advent.calendar.aoc.solutions.utils.contains
+import org.springframework.stereotype.Component
+
+@Component
+class Day08 : Solution<List<String>>(2021, 8) {
+    override fun parse(lines: List<String>) = lines
+
+    override fun part1(input: List<String>): Int {
         var result = 0
         for (str in input) {
             val s = str.split(" | ").map { it.split(" ") }
@@ -12,7 +17,7 @@ fun main() {
         return result
     }
 
-    fun part2(input: List<String>): Int {
+    override fun part2(input: List<String>): Int {
         var result = 0
         for (str in input) {
             val s = str.split(" | ").map { it.split(" ").map { x -> x.toSet() } }
@@ -26,7 +31,7 @@ fun main() {
             map[0] = s[0].first { it.size == 6 && map[1]!! in it && it !in map.values }
             map[6] = s[0].first { it.size == 6 && it !in map.values }
             map[3] = s[0].first { it.size == 5 && map[1]!! in it }
-            map[5] = s[0].first { it.size == 5 && it in map[6]!!}
+            map[5] = s[0].first { it.size == 5 && it in map[6]!! }
             map[2] = s[0].first { it.size == 5 && it !in map.values }
             val num = s[1].map { x -> map.keys.first { map[it] == x } }.joinToString("")
 //            debug(num)
@@ -34,12 +39,4 @@ fun main() {
         }
         return result
     }
-
-    val testInput = readInput("Day08_test")
-    assertEquals(part1(testInput), 26)
-    assertEquals(part2(testInput), 61229)
-
-    val input = readInput("Day08")
-    println(part1(input))
-    println(part2(input))
 }

@@ -1,7 +1,16 @@
-import advent.calendar.aoc.solutions.utils.*
+package advent.calendar.aoc.solutions.y2021
+
+import advent.calendar.aoc.Solution
+import advent.calendar.aoc.solutions.utils.Point
+import advent.calendar.aoc.solutions.utils.splitPair
+import advent.calendar.aoc.solutions.utils.toIntPoints
+import org.springframework.stereotype.Component
 import kotlin.math.abs
 
-fun main() {
+@Component
+class Day13 : Solution<List<String>>(2021, 13) {
+    override fun parse(lines: List<String>) = lines
+
     fun List<Point>.apply(dir: String, pos: Int): List<Point> {
         return if (dir == "x") {
             this.map { it.by { x = pos - abs(pos - x) } }.distinct()
@@ -10,7 +19,7 @@ fun main() {
         }
     }
 
-    fun part1(input: List<String>): Int {
+    override fun part1(input: List<String>): Int {
         var points = input.filter { "," in it }.toIntPoints(",")
         val folds = input.filter { "fold" in it }.map { it.replace("fold along ", "").splitPair("=") }
 
@@ -20,7 +29,7 @@ fun main() {
         return points.size
     }
 
-    fun part2(input: List<String>): Int {
+    override fun part2(input: List<String>): Int {
         var points = input.filter { "," in it }.toIntPoints(",")
         val folds = input.filter { "fold" in it }.map { it.replace("fold along ", "").splitPair("=") }
 
@@ -33,12 +42,4 @@ fun main() {
         }
         return points.size
     }
-
-    val testInput = readInput("Day13_test")
-    assertEquals(part1(testInput), 17)
-    assertEquals(part2(testInput), 16)
-
-    val input = readInput("Day13")
-    println(part1(input))
-    println(part2(input))
 }

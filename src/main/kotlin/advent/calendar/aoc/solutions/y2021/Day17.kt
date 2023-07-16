@@ -1,8 +1,22 @@
+package advent.calendar.aoc.solutions.y2021
+
+import advent.calendar.aoc.Solution
 import advent.calendar.aoc.solutions.utils.Matrix
 import advent.calendar.aoc.solutions.utils.Point
-import advent.calendar.aoc.solutions.utils.assertEquals
+import org.springframework.stereotype.Component
 
-fun main() {
+@Component
+class Day17 : Solution<Matrix>(2021, 17) {
+    fun parse(line: String, regex: Regex): IntRange {
+        val match = regex.find(line)!!
+        return match.groupValues[1].toInt()..match.groupValues[2].toInt()
+    }
+
+    override fun parse(lines: List<String>) = Matrix(
+        parse(lines[0], Regex("x=(-?\\d+)\\.\\.(-?\\d+)")),
+        parse(lines[0], Regex("y=(-?\\d+)\\.\\.(-?\\d+)"))
+    )
+
     fun solves(input: Matrix) = Matrix(1..input.x.last, input.y.first..100)
         .indices
         .filter {
@@ -18,20 +32,12 @@ fun main() {
             false
         }
 
-    fun part1(input: Matrix): Int {
+    override fun part1(input: Matrix): Int {
         val shift = solves(input).maxByOrNull { it.y }!!
         return shift.y * (shift.y + 1) / 2
     }
 
-    fun part2(input: Matrix): Int {
+    override fun part2(input: Matrix): Int {
         return solves(input).size
     }
-
-    val testInput = Matrix(20..30, -10..-5)
-    assertEquals(part1(testInput), 45)
-    assertEquals(part2(testInput), 112)
-
-    val input = Matrix(241..275, -75..-49)
-    println(part1(input))
-    println(part2(input))
 }

@@ -1,8 +1,13 @@
-import advent.calendar.aoc.solutions.utils.assertEquals
-import advent.calendar.aoc.solutions.utils.readInput
+package advent.calendar.aoc.solutions.y2021
 
-fun main() {
-    fun part1(input: List<String>): Int {
+import advent.calendar.aoc.Solution
+import org.springframework.stereotype.Component
+
+@Component
+class Day06 : Solution<List<String>>(2021, 6) {
+    override fun parse(lines: List<String>) = lines
+
+    override fun part1(input: List<String>): Int {
         val l = input[0].split(",").map(String::toInt)
         var pos = (0..8).map { x -> l.filter { it == x }.size }
         repeat(80) {
@@ -11,7 +16,7 @@ fun main() {
         return pos.sum()
     }
 
-    fun part2(input: List<String>): Long {
+    override fun part2(input: List<String>): Long {
         val l = input[0].split(",").map(String::toInt)
         var pos = (0..8).map { x -> l.filter { it == x }.size.toLong() }
         repeat(256) {
@@ -19,12 +24,4 @@ fun main() {
         }
         return pos.sum()
     }
-
-    val testInput = readInput("Day06_test")
-    assertEquals(part1(testInput), 5934)
-    assertEquals(part2(testInput), 26984457539)
-
-    val input = readInput("Day06")
-    println(part1(input))
-    println(part2(input))
 }

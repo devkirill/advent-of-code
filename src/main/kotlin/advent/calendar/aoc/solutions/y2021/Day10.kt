@@ -1,10 +1,15 @@
-import advent.calendar.aoc.solutions.utils.assertEquals
+package advent.calendar.aoc.solutions.y2021
+
+import advent.calendar.aoc.Solution
 import advent.calendar.aoc.solutions.utils.middle
-import advent.calendar.aoc.solutions.utils.readInput
+import org.springframework.stereotype.Component
 import java.util.*
 
-fun main() {
-    fun part1(input: List<String>): Int {
+@Component
+class Day10 : Solution<List<String>>(2021, 10) {
+    override fun parse(lines: List<String>) = lines
+
+    override fun part1(input: List<String>): Int {
         var result = 0
         input.map { str ->
             val stack = Stack<Char>()
@@ -23,7 +28,7 @@ fun main() {
         return result
     }
 
-    fun part2(input: List<String>): Long {
+    override fun part2(input: List<String>): Long {
         val result = mutableListOf<Long>()
         input.map { str ->
             val stack = Stack<Char>()
@@ -50,12 +55,4 @@ fun main() {
 //        debug(result.sorted())
         return result.sorted().middle()
     }
-
-    val testInput = readInput("Day10_test")
-    assertEquals(part1(testInput), 26397)
-    assertEquals(part2(testInput), 288957)
-
-    val input = readInput("Day10")
-    println(part1(input))
-    println(part2(input))
 }
