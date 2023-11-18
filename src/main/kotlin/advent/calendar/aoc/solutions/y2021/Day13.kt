@@ -29,17 +29,19 @@ class Day13 : Solution<List<String>>(2021, 13) {
         return points.size
     }
 
-    override fun part2(input: List<String>): Int {
+    override fun part2(input: List<String>): String {
         var points = input.filter { "," in it }.toIntPoints(",")
         val folds = input.filter { "fold" in it }.map { it.replace("fold along ", "").splitPair("=") }
 
         for (fold in folds) {
             points = points.apply(fold.first, fold.second.toInt())
         }
+        println()
         for (y in points.minOf { it.y }..points.maxOf { it.y }) {
             println((points.minOf { it.x }..points.maxOf { it.x })
-                .joinToString("") { if (Point(it, y) in points) "#" else " " })
+                .joinToString("") { if (Point(it, y) in points) "█" else " " })
         }
-        return points.size
+        print("Enter: ")
+        return readln()
     }
 }
