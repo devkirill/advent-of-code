@@ -36,6 +36,19 @@ class Day05 : Solution<Day05.Content>(2022, 5) {
         }
         return cargo.keys.map {cargo[it]!!.first }.joinToString("") { it.toString() }
     }
+    override fun part2(input: Content): String {
+        val cargo = input.cargo
+        input.actions.forEach { action ->
+            val stack = LinkedList<Char>()
+            repeat(action.count) {
+                stack.push(cargo[action.from]!!.pop())
+            }
+            while (stack.isNotEmpty()) {
+                cargo[action.to]!!.push(stack.poll())
+            }
+        }
+        return cargo.keys.map {cargo[it]!!.first }.joinToString("") { it.toString() }
+    }
 
     data class Content(val cargo: Map<Int, LinkedList<Char>>, val actions: List<Action>)
     data class Action(val from: Int, val to : Int, val count: Int)
