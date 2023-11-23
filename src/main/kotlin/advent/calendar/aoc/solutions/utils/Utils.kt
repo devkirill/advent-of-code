@@ -58,6 +58,9 @@ data class Point(val x: Int, val y: Int) {
     operator fun minus(p: Point) = Point(x - p.x, y - p.y)
     operator fun times(a: Int) = Point(x * a, y * a)
     operator fun div(a: Int) = Point(x / a, y / a)
+
+    val mannSize get() = x + y
+
     fun by(lambda: Builder.() -> Unit): Point {
         val builder = Builder(this)
         lambda(builder)
