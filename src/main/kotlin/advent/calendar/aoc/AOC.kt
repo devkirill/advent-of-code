@@ -62,7 +62,8 @@ object AOC {
         }
         val content = String((con.content as InputStream).readAllBytes())
         when {
-            "That's the right answer" in content -> {
+            "That's the right answer" in content ||
+            "You don't seem to be solving the right level" in content -> {
 //                Logger.ok("That's the right answer")
             }
 
