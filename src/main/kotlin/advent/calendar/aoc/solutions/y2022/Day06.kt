@@ -1,13 +1,10 @@
 package advent.calendar.aoc.solutions.y2022
 
 import advent.calendar.aoc.Solution
-import advent.calendar.aoc.solutions.utils.toInt
 import org.springframework.stereotype.Component
-import java.util.Deque
-import java.util.LinkedList
 
 @Component
-class Day06 : Solution<String>(2022, 6) {
+class Day06 : Solution<String>() {
     override fun parse(lines: List<String>): String = lines.single()
 
     override fun part1(input: String): Int {

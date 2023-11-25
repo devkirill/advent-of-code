@@ -1,14 +1,10 @@
 package advent.calendar.aoc.solutions.y2022
 
 import advent.calendar.aoc.Solution
-import advent.calendar.aoc.solutions.utils.toInt
 import org.springframework.stereotype.Component
-import java.lang.Math.min
-import java.util.Deque
-import java.util.LinkedList
 
 @Component
-class Day07 : Solution<Day07.Dir>(2022, 7) {
+class Day07 : Solution<Day07.Dir>() {
     override fun parse(lines: List<String>): Dir {
         val root = Dir()
         var cur = root

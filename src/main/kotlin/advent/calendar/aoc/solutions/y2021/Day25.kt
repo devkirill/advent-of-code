@@ -18,7 +18,7 @@ import kotlin.collections.mutableMapOf
 import kotlin.collections.set
 
 @Component
-class Day25 : Solution<List<String>>(2021, 25) {
+class Day25 : Solution<List<String>>() {
     override fun parse(lines: List<String>) = lines
 
     override fun part1(input: List<String>): Int {

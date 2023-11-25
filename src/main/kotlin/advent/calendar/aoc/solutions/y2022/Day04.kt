@@ -7,7 +7,7 @@ import org.springframework.stereotype.Component
 typealias Type = List<List<IntRange>>
 
 @Component
-class Day04 : Solution<Type>(2022, 4) {
+class Day04 : Solution<Type>() {
     override fun parse(lines: List<String>) = lines.map {
         it.split(",").map { val (a, b) = it.split("-").toInt(); a..b }
     }

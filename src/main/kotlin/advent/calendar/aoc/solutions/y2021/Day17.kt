@@ -6,7 +6,7 @@ import advent.calendar.aoc.solutions.utils.Point
 import org.springframework.stereotype.Component
 
 @Component
-class Day17 : Solution<Matrix>(2021, 17) {
+class Day17 : Solution<Matrix>() {
     fun parse(line: String, regex: Regex): IntRange {
         val match = regex.find(line)!!
         return match.groupValues[1].toInt()..match.groupValues[2].toInt()

@@ -24,7 +24,7 @@ import kotlin.collections.toMutableList
 import kotlin.math.abs
 
 @Component
-class Day23 : Solution<List<Int>>(2021, 23) {
+class Day23 : Solution<List<Int>>() {
     override fun parse(lines: List<String>): List<Int> {
         return (0..10).map { 0 } +
                 lines[2].split("#").filter { it.isNotBlank() }.map { it[0] - 'A' + 1 } +

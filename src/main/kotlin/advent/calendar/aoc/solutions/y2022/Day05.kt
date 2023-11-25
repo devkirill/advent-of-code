@@ -1,13 +1,11 @@
 package advent.calendar.aoc.solutions.y2022
 
 import advent.calendar.aoc.Solution
-import advent.calendar.aoc.solutions.utils.toInt
 import org.springframework.stereotype.Component
-import java.util.Deque
 import java.util.LinkedList
 
 @Component
-class Day05 : Solution<Day05.Content>(2022, 5) {
+class Day05 : Solution<Day05.Content>() {
     override fun parse(lines: List<String>): Content {
         val cargo = lines.takeWhile { it.isNotBlank() }.let { cargo->
             cargo.last().split(' ')

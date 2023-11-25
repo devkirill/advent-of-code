@@ -6,7 +6,7 @@ import org.springframework.stereotype.Component
 import java.util.*
 
 @Component
-class Day10 : Solution<List<String>>(2021, 10) {
+class Day10 : Solution<List<String>>() {
     override fun parse(lines: List<String>) = lines
 
     override fun part1(input: List<String>): Int {
