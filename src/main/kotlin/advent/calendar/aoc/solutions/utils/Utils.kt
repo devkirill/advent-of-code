@@ -4,6 +4,7 @@ import java.io.File
 import java.lang.Integer.min
 import java.math.BigInteger
 import java.security.MessageDigest
+import kotlin.math.*
 
 /**
  * Reads lines from the given input txt file.
@@ -18,7 +19,7 @@ fun readInput(name: String): List<String> {
     }
 }
 
-fun <T> runSolve(day: Int, testSolve: T, solve : (List<String>) -> T) {
+fun <T> runSolve(day: Int, testSolve: T, solve: (List<String>) -> T) {
     val testInput = readInput("Day${day}_test")
     assertEquals(solve(testInput), testSolve)
 
@@ -26,7 +27,7 @@ fun <T> runSolve(day: Int, testSolve: T, solve : (List<String>) -> T) {
     println(solve(input))
 }
 
-fun <T> runSolveCount(day: Int, count: Int, testSolve: T, solve : (List<String>, Int) -> T) {
+fun <T> runSolveCount(day: Int, count: Int, testSolve: T, solve: (List<String>, Int) -> T) {
     val testInput = readInput("Day${day}_test")
     assertEquals(solve(testInput, count), testSolve)
 
@@ -78,10 +79,14 @@ fun Point.nearby4() = listOf(Point(-1, 0), Point(1, 0), Point(0, -1), Point(0, 1
 fun Point.around() = (-1..1)
     .flatMap { y -> (-1..1).map { x -> Point(x, y) } }
     .map { this + it }
+
 fun Point.nearby8() = (-1..1)
     .flatMap { y -> (-1..1).map { x -> Point(x, y) } }
     .filter { it.x != 0 || it.y != 0 }
     .map { this + it }
+
+infix fun Point.chebyshevDistance(p: Point) = (this - p).let { max(abs(it.x), abs(it.y)) }
+infix fun Point.manhattanDistance(p: Point) = (this - p).let { abs(it.x) + abs(it.y) }
 
 //endregion
 
@@ -176,7 +181,7 @@ fun <T : Comparable<T>> MutableList<T>.heapify(p: Int) {
 fun <T : Comparable<T>> MutableList<T>.heapPush(element: T) {
     add(element)
     var i = this.size - 1
-    var parent = (i - 1)/ 2
+    var parent = (i - 1) / 2
 
     while (i > 0 && this[parent] > this[i]) {
         val temp = this[i]
