@@ -224,3 +224,12 @@ fun Collection<Int>.range() = (minOrNull() ?: 0)..(maxOrNull() ?: 0)
 fun IntRange.extend(size: Int = 1) = (first - size)..(last + size)
 
 fun <A, B> List<Pair<A, B>>.toMutableMap() = toMap().toMutableMap()
+
+fun gcd(a: Int, b: Int):Int = if (b == 0) a else gcd(b, a % b)
+
+fun lcm(a: Int, b: Int) = a / gcd(a, b) * b
+
+operator fun BigInteger.div(a: Int) = this / a.toBigInteger()
+operator fun BigInteger.rem(a: Int) = this % a.toBigInteger()
+
+operator fun List<Int>.times(a: Int) = map { it * a }

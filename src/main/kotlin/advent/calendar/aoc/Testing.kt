@@ -47,7 +47,7 @@ class Testing(val solutions: List<Solution<*>>) {
             if (result) {
                 print("${ConsoleColors.GREEN}✔${ConsoleColors.RESET}")
             } else {
-                print("${ConsoleColors.RED}✖${ConsoleColors.RESET}")
+                print("${ConsoleColors.RED}✖${ConsoleColors.RESET} ${answer} ")
             }
         } catch (_: NotReleased) {
         } catch (e: Throwable) {
