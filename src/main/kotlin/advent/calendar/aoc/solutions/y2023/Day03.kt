@@ -29,9 +29,9 @@ class Day03 : Solution<List<String>>() {
             for (x in input[0].indices) {
                 val c = input[y][x]
                 if (c == '*') {
-                    val near = findNear(listOf(Point(x,y)), input)
+                    val near = findNear(listOf(Point(x, y)), input)
                     if (near.size == 2) {
-                        gears += near.reduce {a,b -> a*b}
+                        gears += near.reduce { a, b -> a * b }
                     }
                 }
             }
@@ -40,7 +40,7 @@ class Day03 : Solution<List<String>>() {
     }
 
     fun findNear(points: List<Point>, input: List<String>): List<Int> {
-val nears = points.flatMap { it.nearby8() }.toSet()
+        val nears = points.flatMap { it.nearby8() }.toSet()
         val nums = mutableListOf<Int>()
         for (y in input.indices) {
             var num = ""
@@ -49,7 +49,7 @@ val nears = points.flatMap { it.nearby8() }.toSet()
                 val c = input[y][x]
                 if (c.isDigit()) {
                     num += c
-                    if (Point(x,y) in nears) {
+                    if (Point(x, y) in nears) {
                         isNear = true
                     }
                 } else {
