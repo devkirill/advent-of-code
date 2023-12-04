@@ -4,7 +4,8 @@ import java.io.File
 import java.lang.Integer.min
 import java.math.BigInteger
 import java.security.MessageDigest
-import kotlin.math.*
+import kotlin.math.abs
+import kotlin.math.max
 
 /**
  * Reads lines from the given input txt file.
@@ -225,9 +226,22 @@ fun IntRange.extend(size: Int = 1) = (first - size)..(last + size)
 
 fun <A, B> List<Pair<A, B>>.toMutableMap() = toMap().toMutableMap()
 
-fun gcd(a: Int, b: Int):Int = if (b == 0) a else gcd(b, a % b)
+fun gcd(a: Int, b: Int): Int = if (b == 0) a else gcd(b, a % b)
 
 fun lcm(a: Int, b: Int) = a / gcd(a, b) * b
+
+fun parseInt(s: String) = s.replace(Regex("\\D"), "").toInt()
+
+fun pow(a: Int, p: Int): Int {
+    if (p < 0) {
+        return 0
+    }
+    var x = 1
+    repeat(p) {
+        x *= a
+    }
+    return x
+}
 
 operator fun BigInteger.div(a: Int) = this / a.toBigInteger()
 operator fun BigInteger.rem(a: Int) = this % a.toBigInteger()

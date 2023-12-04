@@ -81,10 +81,10 @@ object AOC {
             }
 
             "You gave an answer too recently" in content -> {
-                val res = Regex("You have (?:(\\d+)m )?(\\d+)s left to wait (answer = $answer)").find(content)!!
+                val res = Regex("You have (?:(\\d+)m )?(\\d+)s left to wait").find(content)!!
                 fun String.parseInt() = if (isBlank()) 0 else toInt()
                 val wait = res.groupValues[1].parseInt() * 60 + res.groupValues[2].parseInt()
-                Logger.warn(res.groupValues[0])
+                Logger.warn(res.groupValues[0] + " (answer = $answer)")
                 Thread.sleep(wait * 1000L)
                 sendAndValidate(year, day, level, answer)
             }
