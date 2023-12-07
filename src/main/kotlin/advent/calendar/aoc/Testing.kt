@@ -38,7 +38,7 @@ class Testing(val solutions: List<Solution<*>>) {
     fun <T> Solution<T>.test(lines: List<String>, level: Int) {
         val begin = Date().time
         try {
-            val input = parse(lines)
+            val input = (if (level == 1) parse(lines) else parse2(lines))
             val answer = (if (level == 1) part1(input) else part2(input)).toString()
             val result = AOC.send(year, day, level, answer)
             if (result) {

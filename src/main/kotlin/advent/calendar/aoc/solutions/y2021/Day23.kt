@@ -158,9 +158,14 @@ class Day23 : Solution<List<Int>>() {
         val path = mutableMapOf<List<Int>, List<Int>>()
 
         var queue = mutableListOf(PairTuple(0, input))
+        val end = (0..10).map { 0 } + listOf(1, 2, 3, 4, 1, 2, 3, 4, 1, 2, 3, 4, 1, 2, 3, 4)
         while (queue.isNotEmpty()) {
             val cur = queue.heapPop()
             val (points, table) = cur
+
+            if (end == table) {
+                return points
+            }
 
             val result = mutableListOf<PairTuple<Int, List<Int>>>()
             for (i in l) {
@@ -184,19 +189,6 @@ class Day23 : Solution<List<Int>>() {
                 }
             }
         }
-
-        val end = (0..10).map { 0 } + listOf(1, 2, 3, 4, 1, 2, 3, 4, 1, 2, 3, 4, 1, 2, 3, 4)
-        var cur: List<Int>? = end
-        while (cur != null) {
-
-//            println((0..10).map { cur!![0, it] }.joinToString(""))
-//            for (r in 1..4) {
-//                println((0 until 4).map { cur!![r, it] }.joinToString(" ", "  "))
-//            }
-//            println(best[cur])
-            cur = path[cur]
-        }
-        println()
 
         return best[end] ?: 0
     }
