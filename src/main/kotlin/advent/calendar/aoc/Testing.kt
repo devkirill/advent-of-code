@@ -8,15 +8,15 @@ import java.util.*
 class Testing(val solutions: List<Solution<*>>) {
     @PostConstruct
     fun init() {
-        solutions.sortedBy { it.day }.sortedByDescending { it.year }.forEach { solution ->
-            solution.calculate()
-        }
+        solutions
+            .sortedByDescending { if (it.day == 25) 0 else it.day }
+            .sortedByDescending { it.year }
+            .forEach { solution -> solution.calculate() }
     }
 
     fun <T> Solution<T>.calculate() {
         val lines = AOC.input(year, day)
         val answers = AOC.getAnswers().filter { it.year == year && it.day == day && it.valid }
-        val begin = Date().time
         var started = false
         if (answers.none { it.level == 1 }) {
             print("$year-${day / 10}${day % 10} ")
@@ -30,16 +30,13 @@ class Testing(val solutions: List<Solution<*>>) {
             test(lines, 2)
             started = true
         }
-        val end = Date().time
-        if (end - begin > 5000L) {
-            print(" at ${end - begin}ms")
-        }
         if (started) {
             println()
         }
     }
 
     fun <T> Solution<T>.test(lines: List<String>, level: Int) {
+        val begin = Date().time
         try {
             val input = parse(lines)
             val answer = (if (level == 1) part1(input) else part2(input)).toString()
@@ -52,6 +49,10 @@ class Testing(val solutions: List<Solution<*>>) {
         } catch (_: NotReleased) {
         } catch (e: Throwable) {
             e.printStackTrace()
+        }
+        val end = Date().time
+        if (end - begin > 5000L) {
+            print(" at ${end - begin}ms")
         }
     }
 }

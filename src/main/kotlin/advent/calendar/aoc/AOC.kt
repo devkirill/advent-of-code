@@ -63,7 +63,7 @@ object AOC {
         val content = String((con.content as InputStream).readAllBytes())
         when {
             "That's the right answer" in content ||
-            "You don't seem to be solving the right level" in content -> {
+                    "You don't seem to be solving the right level" in content -> {
 //                Logger.ok("That's the right answer")
             }
 
@@ -83,9 +83,18 @@ object AOC {
             "You gave an answer too recently" in content -> {
                 val res = Regex("You have (?:(\\d+)m )?(\\d+)s left to wait").find(content)!!
                 fun String.parseInt() = if (isBlank()) 0 else toInt()
-                val wait = res.groupValues[1].parseInt() * 60 + res.groupValues[2].parseInt()
-                Logger.warn(res.groupValues[0] + " (answer = $answer)")
-                Thread.sleep(wait * 1000L)
+                var wait = res.groupValues[1].parseInt() * 60 + res.groupValues[2].parseInt()
+                var msg = ""
+                Logger.warn("", newLine = false)
+                while (wait > 0) {
+                    val m = wait / 60
+                    msg = "You have ${if (m > 0) "${m}m " else ""}${wait % 60}s left to wait (answer = $answer)"
+                    print(msg)
+                    Thread.sleep(1000L)
+                    wait--
+                    print("\b".repeat(msg.length) + " ".repeat(msg.length) + "\b".repeat(msg.length))
+                }
+                print("\b\b")
                 sendAndValidate(year, day, level, answer)
             }
         }
