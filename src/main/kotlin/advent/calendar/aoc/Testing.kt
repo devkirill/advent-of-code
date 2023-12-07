@@ -52,7 +52,7 @@ class Testing(val solutions: List<Solution<*>>) {
         }
         val end = Date().time
         if (end - begin > 5000L) {
-            print(" at ${end - begin}ms")
+            print(" at ${end - begin}ms ")
         }
     }
 }

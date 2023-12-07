@@ -88,7 +88,9 @@ object AOC {
                 Logger.warn("", newLine = false)
                 while (wait > 0) {
                     val m = wait / 60
-                    msg = "You have ${if (m > 0) "${m}m " else ""}${wait % 60}s left to wait (answer = $answer)"
+                    val s = wait % 60
+                    msg =
+                        "You have ${if (m > 0) "${m}m " else ""}${if (s > 0) "${s}s " else ""}left to wait (answer = $answer)"
                     print(msg)
                     Thread.sleep(1000L)
                     wait--
