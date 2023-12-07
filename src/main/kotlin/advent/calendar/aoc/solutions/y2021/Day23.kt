@@ -163,6 +163,10 @@ class Day23 : Solution<List<Int>>() {
             val cur = queue.heapPop()
             val (points, table) = cur
 
+            if (best[table] != points) {
+                continue
+            }
+
             if (end == table) {
                 return points
             }
