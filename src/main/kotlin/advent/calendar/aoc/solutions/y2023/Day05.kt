@@ -15,7 +15,7 @@ class Day05 : Solution<Day05.Data>() {
     }
 
     override fun part1(input: Data): Long {
-        return input.seeds.minBy { r ->
+        return input.seeds.minOf { r ->
             var it = r
             for (mapper in input.mappers) {
                 it = mapper[it]
@@ -31,5 +31,5 @@ class Day05 : Solution<Day05.Data>() {
             ranges.firstOrNull { i >= it.get && i < it.get + it.size }?.let { it.insert - it.get + i } ?: i
     }
 
-    data class Range(val get: Long, val insert: Long, val size: Long)
+    data class Range(val insert: Long, val get: Long, val size: Long)
 }
