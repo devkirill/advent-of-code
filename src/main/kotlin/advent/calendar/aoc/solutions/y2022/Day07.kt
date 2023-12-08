@@ -1,9 +1,7 @@
 package advent.calendar.aoc.solutions.y2022
 
 import advent.calendar.aoc.Solution
-import org.springframework.stereotype.Component
 
-@Component
 class Day07 : Solution<Day07.Dir>() {
     override fun parse(lines: List<String>): Dir {
         val root = Dir()

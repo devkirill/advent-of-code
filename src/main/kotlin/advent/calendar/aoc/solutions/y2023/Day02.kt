@@ -1,10 +1,8 @@
 package advent.calendar.aoc.solutions.y2023
 
 import advent.calendar.aoc.Solution
-import org.springframework.stereotype.Component
 import kotlin.math.max
 
-@Component
 class Day02 : Solution<List<Day02.Game>>() {
     override fun parse(lines: List<String>) = lines.map { line ->
         val (a, b) = line.split(": ")

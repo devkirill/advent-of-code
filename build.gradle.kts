@@ -1,10 +1,7 @@
 import org.jetbrains.kotlin.gradle.tasks.KotlinCompile
 
 plugins {
-	id("org.springframework.boot") version "3.1.1"
-	id("io.spring.dependency-management") version "1.1.0"
 	kotlin("jvm") version "1.8.22"
-	kotlin("plugin.spring") version "1.8.22"
 }
 
 group = "advent.calendar"
@@ -19,9 +16,7 @@ repositories {
 }
 
 dependencies {
-	implementation("org.springframework.boot:spring-boot-starter")
 	implementation("org.jetbrains.kotlin:kotlin-reflect")
-	testImplementation("org.springframework.boot:spring-boot-starter-test")
 	implementation("com.github.doyaaaaaken:kotlin-csv-jvm:1.9.1")
 	implementation("org.reflections:reflections:0.10.2")
 }

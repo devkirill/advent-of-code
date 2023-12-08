@@ -5,7 +5,6 @@ import advent.calendar.aoc.solutions.utils.PairTuple
 import advent.calendar.aoc.solutions.utils.Point
 import advent.calendar.aoc.solutions.utils.heapPop
 import advent.calendar.aoc.solutions.utils.heapPush
-import org.springframework.stereotype.Component
 import kotlin.collections.List
 import kotlin.collections.MutableList
 import kotlin.collections.all
@@ -23,7 +22,6 @@ import kotlin.collections.toList
 import kotlin.collections.toMutableList
 import kotlin.math.abs
 
-@Component
 class Day23 : Solution<List<Int>>() {
     override fun parse(lines: List<String>): List<Int> {
         return (0..10).map { 0 } +

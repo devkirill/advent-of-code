@@ -2,11 +2,9 @@ package advent.calendar.aoc
 
 import advent.calendar.aoc.exceptions.NotReleased
 import advent.calendar.aoc.utils.ConsoleColors
-import jakarta.annotation.PostConstruct
 import java.util.*
 
 class Testing(val solutions: List<Solution<*>>) {
-    @PostConstruct
     fun init() {
         solutions
             .sortedByDescending { if (it.day == 25) 0 else it.day }

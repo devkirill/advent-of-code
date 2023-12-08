@@ -2,9 +2,7 @@ package advent.calendar.aoc.solutions.y2023
 
 import advent.calendar.aoc.Solution
 import advent.calendar.aoc.solutions.utils.lcm
-import org.springframework.stereotype.Component
 
-@Component
 class Day08 : Solution<Day08.Data>() {
     override fun parse(lines: List<String>) = Data(lines[0], lines.drop(2)
         .associate { line ->

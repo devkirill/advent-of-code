@@ -3,20 +3,9 @@ package advent.calendar.aoc.solutions.y2022
 import advent.calendar.aoc.Solution
 import advent.calendar.aoc.solutions.utils.Point
 import advent.calendar.aoc.solutions.utils.nearby4
-import org.springframework.stereotype.Component
 import java.util.*
-import kotlin.collections.List
-import kotlin.collections.Map
-import kotlin.collections.contains
-import kotlin.collections.filter
-import kotlin.collections.forEach
-import kotlin.collections.indices
-import kotlin.collections.isNotEmpty
-import kotlin.collections.minOf
-import kotlin.collections.mutableMapOf
 import kotlin.collections.set
 
-@Component
 class Day12 : Solution<Day12.WorldMap>() {
     override fun parse(lines: List<String>): WorldMap {
         var s = Point(0, 0)

@@ -3,10 +3,7 @@ package advent.calendar.aoc.solutions.y2023
 import advent.calendar.aoc.Solution
 import advent.calendar.aoc.solutions.utils.Point
 import advent.calendar.aoc.solutions.utils.nearby8
-import org.springframework.stereotype.Component
-import kotlin.math.max
 
-@Component
 class Day03 : Solution<List<String>>() {
     override fun parse(lines: List<String>) = lines
 

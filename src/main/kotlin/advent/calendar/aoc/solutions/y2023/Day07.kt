@@ -1,9 +1,7 @@
 package advent.calendar.aoc.solutions.y2023
 
 import advent.calendar.aoc.Solution
-import org.springframework.stereotype.Component
 
-@Component
 class Day07 : Solution<List<Day07.Hand>>() {
     override fun parse(lines: List<String>) = lines.map { line ->
         val (cards, bid) = line.split(" ")

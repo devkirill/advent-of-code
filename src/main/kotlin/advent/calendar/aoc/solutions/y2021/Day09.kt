@@ -3,9 +3,7 @@ package advent.calendar.aoc.solutions.y2021
 import advent.calendar.aoc.Solution
 import advent.calendar.aoc.solutions.utils.Point
 import advent.calendar.aoc.solutions.utils.nearby4
-import org.springframework.stereotype.Component
 
-@Component
 class Day09 : Solution<List<String>>() {
     override fun parse(lines: List<String>) = lines
 

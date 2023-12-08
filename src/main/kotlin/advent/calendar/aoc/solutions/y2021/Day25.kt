@@ -3,21 +3,10 @@ package advent.calendar.aoc.solutions.y2021
 import advent.calendar.aoc.Solution
 import advent.calendar.aoc.solutions.utils.Point
 import advent.calendar.aoc.solutions.utils.toMutableMap
-import org.springframework.stereotype.Component
-import kotlin.collections.List
 import kotlin.collections.component1
 import kotlin.collections.component2
-import kotlin.collections.contains
-import kotlin.collections.filter
-import kotlin.collections.flatMap
-import kotlin.collections.forEach
-import kotlin.collections.indices
-import kotlin.collections.listOf
-import kotlin.collections.map
-import kotlin.collections.mutableMapOf
 import kotlin.collections.set
 
-@Component
 class Day25 : Solution<List<String>>() {
     override fun parse(lines: List<String>) = lines
 

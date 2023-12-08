@@ -2,10 +2,8 @@ package advent.calendar.aoc.solutions.y2021
 
 import advent.calendar.aoc.Solution
 import advent.calendar.aoc.solutions.utils.middle
-import org.springframework.stereotype.Component
 import java.util.*
 
-@Component
 class Day10 : Solution<List<String>>() {
     override fun parse(lines: List<String>) = lines
 

@@ -1,10 +1,8 @@
 package advent.calendar.aoc.solutions.y2022
 
 import advent.calendar.aoc.Solution
-import org.springframework.stereotype.Component
-import java.util.LinkedList
+import java.util.*
 
-@Component
 class Day05 : Solution<Day05.Content>() {
     override fun parse(lines: List<String>): Content {
         val cargo = lines.takeWhile { it.isNotBlank() }.let { cargo->

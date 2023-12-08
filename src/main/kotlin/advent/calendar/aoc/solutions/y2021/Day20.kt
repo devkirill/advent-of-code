@@ -4,9 +4,7 @@ import advent.calendar.aoc.Solution
 import advent.calendar.aoc.solutions.utils.Point
 import advent.calendar.aoc.solutions.utils.around
 import advent.calendar.aoc.solutions.utils.extend
-import org.springframework.stereotype.Component
 
-@Component
 class Day20 : Solution<List<String>>() {
     override fun parse(lines: List<String>) = lines
 

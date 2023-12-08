@@ -1,12 +1,11 @@
 package advent.calendar.aoc.solutions.y2022
 
 import advent.calendar.aoc.Solution
-import advent.calendar.aoc.solutions.utils.*
-import org.springframework.stereotype.Component
+import advent.calendar.aoc.solutions.utils.div
+import advent.calendar.aoc.solutions.utils.lcm
+import advent.calendar.aoc.solutions.utils.rem
 import java.math.BigInteger
-import kotlin.math.abs
 
-@Component
 class Day11 : Solution<List<Day11.Monkey>>() {
     override fun parse(lines: List<String>) = lines.joinToString("\n") { it.trim() }
         .split("\n\n")

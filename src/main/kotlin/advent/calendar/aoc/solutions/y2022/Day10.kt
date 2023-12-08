@@ -1,11 +1,9 @@
 package advent.calendar.aoc.solutions.y2022
 
 import advent.calendar.aoc.Solution
-import advent.calendar.aoc.solutions.utils.*
-import org.springframework.stereotype.Component
+import advent.calendar.aoc.solutions.utils.Parser
 import kotlin.math.abs
 
-@Component
 class Day10 : Solution<List<String>>() {
     override fun parse(lines: List<String>) = lines
 
@@ -46,7 +44,7 @@ class Day10 : Solution<List<String>>() {
                 value += v.toInt()
             }
         }
-        println()
+        val list = mutableListOf<String>()
         repeat(6) { y ->
             var s = ""
             for (x in 0 until 40) {
@@ -54,8 +52,8 @@ class Day10 : Solution<List<String>>() {
                 s += if (data.mapIndexed { i, t -> i to t }
                         .any { (tick, value) -> abs(value - x) < 2 && tick == t }) "█" else " "
             }
-            println(s)
+            list += s
         }
-        return readln()
+        return Parser.parse(list)
     }
 }

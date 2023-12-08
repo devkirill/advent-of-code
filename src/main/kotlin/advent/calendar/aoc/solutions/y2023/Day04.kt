@@ -3,9 +3,7 @@ package advent.calendar.aoc.solutions.y2023
 import advent.calendar.aoc.Solution
 import advent.calendar.aoc.solutions.utils.parseInt
 import advent.calendar.aoc.solutions.utils.pow
-import org.springframework.stereotype.Component
 
-@Component
 class Day04 : Solution<List<Day04.Card>>() {
     override fun parse(lines: List<String>) = lines.map { line ->
         val (c, a) = line.split(": ")

@@ -1,9 +1,7 @@
 package advent.calendar.aoc.solutions.y2023
 
 import advent.calendar.aoc.Solution
-import org.springframework.stereotype.Component
 
-@Component
 class Day06 : Solution<Day06.Data>() {
     override fun parse(lines: List<String>) = lines
         .map { l -> l.split(" ").filter { it.isNotBlank() }.drop(1).map { it.toLong() } }
