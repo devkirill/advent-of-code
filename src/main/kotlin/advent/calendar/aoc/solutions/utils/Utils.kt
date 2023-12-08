@@ -228,7 +228,11 @@ fun <A, B> List<Pair<A, B>>.toMutableMap() = toMap().toMutableMap()
 
 fun gcd(a: Int, b: Int): Int = if (b == 0) a else gcd(b, a % b)
 
+fun gcd(a: Long, b: Long): Long = if (b == 0L) a else gcd(b, a % b)
+
 fun lcm(a: Int, b: Int) = a / gcd(a, b) * b
+
+fun lcm(a: Long, b: Long) = a / gcd(a, b) * b
 
 fun parseInt(s: String) = s.replace(Regex("\\D"), "").toInt()
 
