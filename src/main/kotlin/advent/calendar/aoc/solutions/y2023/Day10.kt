@@ -40,10 +40,10 @@ class Day10 : Solution<Day10.Graph>() {
     override fun part2(input: Graph): Int {
         val path = find(input)
         val pairs = path zip (path.drop(1) + path.first())
-        return input.graph.keys.filter { it !in path }.filter { a ->
+        return input.graph.keys.filter { it !in path }.count { a ->
             val b = Point(a.x + 10000, a.y - 1)
             pairs.count { intersect(a, b, it.first, it.second) } % 2 == 1
-        }.count()
+        }
     }
 
     fun find(input: Graph): List<Point> {
