@@ -76,6 +76,17 @@ data class Point(val x: Int, val y: Int) {
     }
 }
 
+fun area2(a: Point, b: Point, c: Point) = (b.x - a.x) * (c.y - a.y) - (b.y - a.y) * (c.x - a.x)
+
+fun intersect(a: Point, b: Point, c: Point, d: Point): Boolean {
+    fun intersect1(a: Int, b: Int, c: Int, d: Int) = max(min(a, b), min(c, d)) <= min(max(a, b), max(c, d))
+
+    return intersect1(a.x, b.x, c.x, d.x) &&
+            intersect1(a.y, b.y, c.y, d.y) &&
+            area2(a, b, c) * area2(a, b, d) <= 0 &&
+            area2(c, d, a) * area2(c, d, b) <= 0
+}
+
 fun Point.nearby4() = listOf(Point(-1, 0), Point(1, 0), Point(0, -1), Point(0, 1)).map { this + it }
 fun Point.around() = (-1..1)
     .flatMap { y -> (-1..1).map { x -> Point(x, y) } }
