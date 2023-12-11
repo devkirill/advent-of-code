@@ -19,6 +19,7 @@ dependencies {
 	implementation("org.jetbrains.kotlin:kotlin-reflect")
 	implementation("com.github.doyaaaaaken:kotlin-csv-jvm:1.9.1")
 	implementation("org.reflections:reflections:0.10.2")
+	implementation("org.jsoup:jsoup:1.17.1")
 }
 
 tasks.withType<KotlinCompile> {

@@ -4,6 +4,7 @@ import advent.calendar.aoc.exceptions.WrongAnswer
 import advent.calendar.aoc.logger.Logger
 import com.github.doyaaaaaken.kotlincsv.dsl.csvReader
 import com.github.doyaaaaaken.kotlincsv.dsl.csvWriter
+import org.jsoup.Jsoup
 import java.io.File
 import java.io.InputStream
 import java.net.HttpURLConnection
@@ -16,7 +17,7 @@ fun createDirIfNotExist(dir: File) {
 }
 
 object AOC {
-    val cookie = System.getenv()["cookie"] ?: System.getProperty("cookie")
+    val cookie = System.getenv()["cookie"] ?: System.getProperty("cookie") ?: TODO("COOKIES!!!")
 
     fun input(year: Int, day: Int): List<String> {
         val file = File("input/$year/$day.txt")
@@ -27,6 +28,16 @@ object AOC {
         val content = readUrl("https://adventofcode.com/${year}/day/${day}/input").removeSuffix("\n").split("\n")
         file.writeText(content.joinToString("\n"))
         return content
+    }
+
+    fun inputs(year: Int, day: Int): List<List<String>> {
+        val doc = Jsoup.connect("https://adventofcode.com/$year/day/$day")
+            .cookie("cookie", cookie)
+            .get()
+        val pre = doc.select("main > .day-desc pre code:not(:has(em))").map { it.text() }
+        val part1 = doc.select("main > .day-desc:not(:has(#part2)) p > code > em").map { it.text() }
+        val part2 = doc.select("main > .day-desc:has(#part2) p > code > em").map { it.text() }
+        return listOf(pre, part1, part2)
     }
 
     fun send(year: Int, day: Int, level: Int, ans: String): Boolean {
