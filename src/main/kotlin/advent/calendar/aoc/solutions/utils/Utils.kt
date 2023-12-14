@@ -262,3 +262,5 @@ operator fun BigInteger.div(a: Int) = this / a.toBigInteger()
 operator fun BigInteger.rem(a: Int) = this % a.toBigInteger()
 
 operator fun List<Int>.times(a: Int) = map { it * a }
+
+fun List<String>.splitEmptyLine() = this.joinToString("\n").split("\n\n").map { it.split("\n") }
