@@ -264,3 +264,26 @@ operator fun BigInteger.rem(a: Int) = this % a.toBigInteger()
 operator fun List<Int>.times(a: Int) = map { it * a }
 
 fun List<String>.splitEmptyLine() = this.joinToString("\n").split("\n\n").map { it.split("\n") }
+
+fun List<String>.toSquareMap(): SquareMap {
+    val sy = this.size
+    val sx = this[0].length
+    val map = mutableMapOf<Point, Char>()
+    for (y in this.indices) {
+        for (x in this[y].indices) {
+            val p = Point(x, y)
+            val c = this[y][x]
+            map[p] = c
+        }
+    }
+    return SquareMap(sx, sy, map)
+}
+
+data class SquareMap(val sizeX: Int, val sizeY: Int, val data: Map<Point, Char>) {
+    operator fun get(x: Int, y: Int) = this[Point(x, y)]
+    operator fun get(p: Point) = data[p]
+    operator fun contains(p: Point) = p in data
+    override fun toString() = (0 until sizeY).joinToString("\n") { y ->
+        (0 until sizeX).joinToString("") { x -> "${data[Point(x, y)] ?: ' '}" }
+    }
+}
