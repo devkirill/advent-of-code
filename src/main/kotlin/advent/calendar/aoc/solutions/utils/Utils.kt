@@ -74,9 +74,14 @@ data class Point(val x: Int, val y: Int) {
 
         fun build() = Point(x, y)
     }
+
+    companion object {
+        val ZERO = Point(0, 0)
+    }
 }
 
-fun area2(a: Point, b: Point, c: Point) = (b.x - a.x) * (c.y - a.y) - (b.y - a.y) * (c.x - a.x)
+fun area2(a: Point, b: Point, c: Point) =
+    (b.x.toLong() - a.x.toLong()) * (c.y.toLong() - a.y.toLong()) - (b.y.toLong() - a.y.toLong()) * (c.x.toLong() - a.x.toLong())
 
 fun intersect(a: Point, b: Point, c: Point, d: Point): Boolean {
     fun intersect1(a: Int, b: Int, c: Int, d: Int) = max(min(a, b), min(c, d)) <= min(max(a, b), max(c, d))
@@ -258,6 +263,8 @@ fun pow(a: Int, p: Int): Int {
     return x
 }
 
+operator fun BigInteger.plus(a: Int) = this + a.toBigInteger()
+operator fun BigInteger.minus(a: Int) = this - a.toBigInteger()
 operator fun BigInteger.div(a: Int) = this / a.toBigInteger()
 operator fun BigInteger.rem(a: Int) = this % a.toBigInteger()
 
