@@ -286,4 +286,6 @@ data class SquareMap(val sizeX: Int, val sizeY: Int, val data: Map<Point, Char>)
     override fun toString() = (0 until sizeY).joinToString("\n") { y ->
         (0 until sizeX).joinToString("") { x -> "${data[Point(x, y)] ?: ' '}" }
     }
+
+    val bottomRight = Point(sizeX - 1, sizeY - 1)
 }

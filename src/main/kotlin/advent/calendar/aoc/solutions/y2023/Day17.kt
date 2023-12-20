@@ -14,7 +14,7 @@ class Day17 : Solution<SquareMap>() {
 
     fun solve(input: SquareMap, steps: IntRange): Int {
         val result = dijkstraSearch(
-            listOf(Position(Point(0, 0), 0), Position(Point(0, 0), 1)),
+            listOf(Position(Point(0, 0), 0, steps = 0), Position(Point(0, 0), 1, steps = 0)),
             { pos ->
                 val list = mutableListOf<Position>()
                 if (pos.steps >= steps.first) {
@@ -28,20 +28,14 @@ class Day17 : Solution<SquareMap>() {
             },
             { pos -> input[pos.p].toString().toInt() }
         )
-//            .let { r ->
-//            r.keys.associate { pos -> pos.p to r.filter { it.key.p == pos.p }.minOf { it.value } }
-//        }
-
         val m = result
-            .filter { it.key.p == Point(input.sizeX - 1, input.sizeY - 1) }
-            .filter { it.key.steps >= steps.first }
+            .filter { it.key.p == input.bottomRight }
+            .filter { it.key.steps in steps }
             .minBy { it.value }.key
-        val path = result.getPathTo(m).map { it.p }
-        println()
-        println(input.copy(data = input.data.map { (k, v) -> k to (if (k in path) '.' else v) }.toMap()))
-        return result.filter { it.key.p == Point(input.sizeX - 1, input.sizeY - 1) }
-            .filter { it.key.steps >= steps.first }
-            .minOf { it.value }
+//        val path = result.getPathTo(m).map { it.p }
+//        println()
+//        println(input.copy(data = input.data.map { (k, v) -> k to (if (k in path) '.' else v) }.toMap()))
+        return result[m]!!
     }
 
     data class Position(val p: Point, var dir: Int, val steps: Int = 1) {
