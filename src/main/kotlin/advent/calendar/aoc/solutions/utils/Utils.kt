@@ -295,4 +295,5 @@ data class SquareMap(val sizeX: Int, val sizeY: Int, val data: Map<Point, Char>)
     }
 
     val bottomRight = Point(sizeX - 1, sizeY - 1)
+    val keys = data.keys
 }

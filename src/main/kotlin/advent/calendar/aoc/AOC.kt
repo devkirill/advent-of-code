@@ -41,20 +41,25 @@ object AOC {
     }
 
     fun send(year: Int, day: Int, level: Int, ans: String): Boolean {
-        val answers = getAnswers().filter { it.year == year && it.day == day && it.level == level }
-        answers.firstOrNull { it.answer == ans }?.let { return it.valid }
+        try {
+            val answers = getAnswers().filter { it.year == year && it.day == day && it.level == level }
+            answers.firstOrNull { it.answer == ans }?.let { return it.valid }
 
-        val answer = try {
-            sendAndValidate(year, day, level, ans)
-            Answer(year, day, level, ans, true)
-        } catch (e: WrongAnswer) {
-            Answer(year, day, level, ans, false)
-        }
+            val answer = try {
+                sendAndValidate(year, day, level, ans)
+                Answer(year, day, level, ans, true)
+            } catch (e: WrongAnswer) {
+                Answer(year, day, level, ans, false)
+            }
 
-        csvWriter().open(File("result.csv"), append = true) {
-            writeRow(answer.toRow())
+            csvWriter().open(File("result.csv"), append = true) {
+                writeRow(answer.toRow())
+            }
+            return answer.valid
+        } catch (e: Throwable) {
+            println(ans)
+            throw e
         }
-        return answer.valid
     }
 
     private fun sendAndValidate(year: Int, day: Int, level: Int, answer: String) {
