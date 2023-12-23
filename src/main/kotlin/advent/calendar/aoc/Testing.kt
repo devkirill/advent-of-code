@@ -18,6 +18,7 @@ class Testing(val solutions: List<Solution<*>>) {
         var started = false
         if (answers.none { it.level == 1 }) {
             print("$year-${day / 10}${day % 10} ")
+            testExamples(year, day, 1)
             test(lines, 1)
             started = true
         }
@@ -25,6 +26,7 @@ class Testing(val solutions: List<Solution<*>>) {
             if (!started) {
                 print("$year-${day / 10}${day % 10} .")
             }
+            testExamples(year, day, 2)
             test(lines, 2)
             started = true
         }
@@ -52,5 +54,33 @@ class Testing(val solutions: List<Solution<*>>) {
         if (end - begin > 5000L) {
             print(" at ${end - begin}ms ")
         }
+    }
+
+    fun <T> Solution<T>.testExamples(year: Int, day: Int, part: Int) {
+        try {
+            val (inputs, outputs) = AOC.getInputs(year, day, part)
+
+            inputs.forEach { input ->
+                val answer = solve(input, part)
+                if (answer !in outputs) {
+                    println("${input.joinToString("\n")}")
+                    println("${ConsoleColors.RED}$answer${ConsoleColors.RESET}")
+                    TODO()
+                }
+            }
+        } catch (_: NotReleased) {
+        } catch (e: Throwable) {
+            e.printStackTrace()
+        }
+    }
+
+    fun <T> Solution<T>.solve(lines: List<String>, part: Int): String {
+        val input: T
+        try {
+            input = (if (part == 1) parse(lines) else parse2(lines))
+        } catch (e: Throwable) {
+            throw NotReleased()
+        }
+        return (if (part == 1) part1(input) else part2(input)).toString()
     }
 }

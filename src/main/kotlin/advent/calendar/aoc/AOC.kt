@@ -30,14 +30,16 @@ object AOC {
         return content
     }
 
-    fun inputs(year: Int, day: Int): List<List<String>> {
+    fun getInputs(year: Int, day: Int, part: Int): Pair<List<List<String>>, List<String>> {
         val doc = Jsoup.connect("https://adventofcode.com/$year/day/$day")
             .cookie("cookie", cookie)
             .get()
-        val pre = doc.select("main > .day-desc pre code:not(:has(em))").map { it.text() }
-        val part1 = doc.select("main > .day-desc:not(:has(#part2)) p > code > em").map { it.text() }
-        val part2 = doc.select("main > .day-desc:has(#part2) p > code > em").map { it.text() }
-        return listOf(pre, part1, part2)
+        val inputs = doc.select("main > .day-desc pre code:not(:has(em))").map { it.text() }
+        val answers = if (part == 1)
+            doc.select("main > .day-desc:not(:has(#part2)) p > code > em").map { it.text() }
+        else
+            doc.select("main > .day-desc:has(#part2) p > code > em").map { it.text() }
+        return inputs.map { it.split("\n") } to answers
     }
 
     fun send(year: Int, day: Int, level: Int, ans: String): Boolean {
