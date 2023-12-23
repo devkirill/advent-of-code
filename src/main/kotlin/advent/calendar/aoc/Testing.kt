@@ -63,7 +63,7 @@ class Testing(val solutions: List<Solution<*>>) {
             inputs.forEach { input ->
                 val answer = solve(input, part)
                 if (answer !in outputs) {
-                    println("${input.joinToString("\n")}")
+                    println(input.joinToString("\n"))
                     println("${ConsoleColors.RED}$answer${ConsoleColors.RESET}")
                     TODO()
                 }
