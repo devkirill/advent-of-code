@@ -296,4 +296,53 @@ data class SquareMap(val sizeX: Int, val sizeY: Int, val data: Map<Point, Char>)
 
     val bottomRight = Point(sizeX - 1, sizeY - 1)
     val keys = data.keys
+    fun cyclic() = SquareMapCyclic(sizeX, sizeY, data)
+}
+
+data class SquareMapCyclic(val sizeX: Int, val sizeY: Int, val data: Map<Point, Char>) {
+    operator fun get(x: Int, y: Int) = this[Point(x, y)]
+    operator fun get(p: Point) = data[Point((p.x % sizeX + sizeX) % sizeX, (p.y % sizeY + sizeY) % sizeY)]
+    operator fun contains(p: Point) = true
+    override fun toString() = (0 until sizeY).joinToString("\n") { y ->
+        (0 until sizeX).joinToString("") { x -> "${data[Point(x, y)] ?: ' '}" }
+    }
+
+    val bottomRight = Point(sizeX - 1, sizeY - 1)
+    val keys = data.keys
+}
+
+fun Sequence<Long>.tryPredictSequence(elem: Int, uprove: Int = 2): Long {
+    val list = mutableListOf<Long>()
+
+    val iterator = iterator()
+    var uproved = 0
+    while (true) {
+        if (!iterator.hasNext()) error("not found")
+        list += iterator.next()
+
+        if (list.size > elem) {
+            return list.last().toLong()
+        }
+        if (list.size >= 4) {
+            val (x1, x2, x3, x4) = list.subList(list.size - 4, list.size)
+            val x = x3
+            val d = x3 - x2
+            val dd = x3 - x2 - x2 + x1
+            fun calc(elem: Int): Long {
+                val st = (elem - list.size + 2).toLong()
+                return x + d * st + dd * st * (st + 1) / 2
+            }
+
+            val next = calc(list.size - 1)
+            println("${list.size - 4}\t$x\t$d\t$dd")
+            if (x4 == next) {
+                uproved++
+                if (uprove <= uproved) {
+                    return calc(elem)
+                }
+            } else {
+                uproved = 0
+            }
+        }
+    }
 }
