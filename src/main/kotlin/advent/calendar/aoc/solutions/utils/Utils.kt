@@ -55,8 +55,6 @@ operator fun <T> Set<T>.contains(other: Collection<T>): Boolean {
 //region Point
 
 
-
-
 //endregion
 
 fun <T> List<T>.middle() = this[size / 2]
@@ -295,6 +293,17 @@ fun Sequence<Long>.tryPredictSequence(elem: Int, uprove: Int = 2): Long {
             } else {
                 uproved = 0
             }
+        }
+    }
+}
+
+fun <T> Sequence<T>.pairs(): Sequence<Pair<T, T>> {
+    val list = mutableListOf<T>()
+    val iter = iterator()
+    return sequence {
+        for (cur in iter) {
+            yieldAll(list.map { it to cur })
+            list += cur
         }
     }
 }
