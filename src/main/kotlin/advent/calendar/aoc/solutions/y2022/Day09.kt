@@ -1,10 +1,10 @@
 package advent.calendar.aoc.solutions.y2022
 
 import advent.calendar.aoc.Solution
-import advent.calendar.aoc.solutions.utils.Point
-import advent.calendar.aoc.solutions.utils.chebyshevDistance
-import advent.calendar.aoc.solutions.utils.manhattanDistance
-import advent.calendar.aoc.solutions.utils.nearby8
+import advent.calendar.aoc.solutions.utils.geom.Point
+import advent.calendar.aoc.solutions.utils.geom.chebyshevDistance
+import advent.calendar.aoc.solutions.utils.geom.manhattanDistance
+import advent.calendar.aoc.solutions.utils.geom.nearby8
 
 class Day09 : Solution<List<Pair<String, Int>>>() {
     override fun parse(lines: List<String>) = lines.map { val (a, b) = it.split(" "); a to b.toInt() }

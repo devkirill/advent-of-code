@@ -1,8 +1,8 @@
 package advent.calendar.aoc.solutions.y2023
 
 import advent.calendar.aoc.Solution
-import advent.calendar.aoc.solutions.utils.Point
-import advent.calendar.aoc.solutions.utils.manhattanDistance
+import advent.calendar.aoc.solutions.utils.geom.Point
+import advent.calendar.aoc.solutions.utils.geom.manhattanDistance
 
 class Day11 : Solution<List<Point>>() {
     override fun parse(lines: List<String>): List<Point> {

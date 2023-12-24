@@ -1,8 +1,8 @@
 package advent.calendar.aoc.solutions.y2023
 
 import advent.calendar.aoc.Solution
-import advent.calendar.aoc.solutions.utils.Point
-import advent.calendar.aoc.solutions.utils.intersect
+import advent.calendar.aoc.solutions.utils.geom.Point
+import advent.calendar.aoc.solutions.utils.geom.intersect
 import java.util.*
 
 class Day10 : Solution<Day10.Graph>() {

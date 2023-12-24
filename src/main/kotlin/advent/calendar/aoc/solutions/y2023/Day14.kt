@@ -1,7 +1,7 @@
 package advent.calendar.aoc.solutions.y2023
 
 import advent.calendar.aoc.Solution
-import advent.calendar.aoc.solutions.utils.Point
+import advent.calendar.aoc.solutions.utils.geom.Point
 
 class Day14 : Solution<Day14.Map>() {
     override fun parse(lines: List<String>): Map {

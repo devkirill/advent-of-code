@@ -1,7 +1,7 @@
 package advent.calendar.aoc.solutions.y2021
 
 import advent.calendar.aoc.Solution
-import advent.calendar.aoc.solutions.utils.Point
+import advent.calendar.aoc.solutions.utils.geom.Point
 import advent.calendar.aoc.solutions.utils.toIntPoints
 import kotlin.math.abs
 

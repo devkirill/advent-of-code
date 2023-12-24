@@ -2,7 +2,7 @@ package advent.calendar.aoc.solutions.y2021
 
 import advent.calendar.aoc.Solution
 import advent.calendar.aoc.solutions.utils.Matrix
-import advent.calendar.aoc.solutions.utils.nearby8
+import advent.calendar.aoc.solutions.utils.geom.nearby8
 
 class Day11 : Solution<List<String>>() {
     override fun parse(lines: List<String>) = lines

@@ -1,9 +1,9 @@
 package advent.calendar.aoc.solutions.y2023
 
 import advent.calendar.aoc.Solution
-import advent.calendar.aoc.solutions.utils.Point
 import advent.calendar.aoc.solutions.utils.SquareMap
 import advent.calendar.aoc.solutions.utils.dijkstraSearch
+import advent.calendar.aoc.solutions.utils.geom.Point
 import advent.calendar.aoc.solutions.utils.toSquareMap
 
 class Day17 : Solution<SquareMap>() {

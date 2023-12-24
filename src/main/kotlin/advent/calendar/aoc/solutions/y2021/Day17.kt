@@ -2,7 +2,7 @@ package advent.calendar.aoc.solutions.y2021
 
 import advent.calendar.aoc.Solution
 import advent.calendar.aoc.solutions.utils.Matrix
-import advent.calendar.aoc.solutions.utils.Point
+import advent.calendar.aoc.solutions.utils.geom.Point
 
 class Day17 : Solution<Matrix>() {
     fun parse(line: String, regex: Regex): IntRange {

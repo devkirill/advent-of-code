@@ -1,8 +1,8 @@
 package advent.calendar.aoc.solutions.y2022
 
 import advent.calendar.aoc.Solution
-import advent.calendar.aoc.solutions.utils.Point
-import advent.calendar.aoc.solutions.utils.nearby4
+import advent.calendar.aoc.solutions.utils.geom.Point
+import advent.calendar.aoc.solutions.utils.geom.nearby4
 import java.util.*
 import kotlin.collections.set
 

@@ -1,8 +1,8 @@
 package advent.calendar.aoc.solutions.y2023
 
 import advent.calendar.aoc.Solution
-import advent.calendar.aoc.solutions.utils.Point
-import advent.calendar.aoc.solutions.utils.area2
+import advent.calendar.aoc.solutions.utils.geom.Point
+import advent.calendar.aoc.solutions.utils.geom.area2
 import kotlin.math.abs
 
 class Day18 : Solution<List<Day18.Line>>() {

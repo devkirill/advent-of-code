@@ -1,7 +1,7 @@
 package advent.calendar.aoc.solutions.y2023
 
 import advent.calendar.aoc.Solution
-import advent.calendar.aoc.solutions.utils.Point
+import advent.calendar.aoc.solutions.utils.geom.Point
 import advent.calendar.aoc.solutions.utils.splitEmptyLine
 
 class Day13 : Solution<List<Day13.Map>>() {

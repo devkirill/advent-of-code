@@ -1,8 +1,22 @@
 package advent.calendar.aoc.solutions.y2023
 
 import advent.calendar.aoc.Solution
-import advent.calendar.aoc.solutions.utils.*
+import advent.calendar.aoc.solutions.utils.SquareMapCyclic
+import advent.calendar.aoc.solutions.utils.geom.Point
+import advent.calendar.aoc.solutions.utils.geom.nearby4
+import advent.calendar.aoc.solutions.utils.toSquareMap
+import advent.calendar.aoc.solutions.utils.tryPredictSequence
 import java.util.*
+import kotlin.collections.List
+import kotlin.collections.asSequence
+import kotlin.collections.contains
+import kotlin.collections.count
+import kotlin.collections.filter
+import kotlin.collections.first
+import kotlin.collections.isNotEmpty
+import kotlin.collections.mutableMapOf
+import kotlin.collections.plusAssign
+import kotlin.collections.set
 
 class Day21 : Solution<SquareMapCyclic>() {
     override fun parse(lines: List<String>) = lines.toSquareMap().cyclic()

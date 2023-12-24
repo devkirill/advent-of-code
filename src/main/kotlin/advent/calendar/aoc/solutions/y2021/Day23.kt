@@ -2,7 +2,7 @@ package advent.calendar.aoc.solutions.y2021
 
 import advent.calendar.aoc.Solution
 import advent.calendar.aoc.solutions.utils.PairTuple
-import advent.calendar.aoc.solutions.utils.Point
+import advent.calendar.aoc.solutions.utils.geom.Point
 import advent.calendar.aoc.solutions.utils.heapPop
 import advent.calendar.aoc.solutions.utils.heapPush
 import kotlin.collections.List

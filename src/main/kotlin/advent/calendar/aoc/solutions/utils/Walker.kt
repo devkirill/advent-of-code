@@ -1,5 +1,7 @@
 package advent.calendar.aoc.solutions.utils
 
+import advent.calendar.aoc.solutions.utils.geom.Point
+
 data class Position(val p: Point, var dir: Int) {
     init {
         dir %= 4

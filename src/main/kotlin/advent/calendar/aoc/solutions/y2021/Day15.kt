@@ -1,7 +1,23 @@
 package advent.calendar.aoc.solutions.y2021
 
 import advent.calendar.aoc.Solution
-import advent.calendar.aoc.solutions.utils.*
+import advent.calendar.aoc.solutions.utils.PairTuple
+import advent.calendar.aoc.solutions.utils.geom.Point
+import advent.calendar.aoc.solutions.utils.geom.nearby4
+import advent.calendar.aoc.solutions.utils.heapPop
+import advent.calendar.aoc.solutions.utils.heapPush
+import kotlin.collections.List
+import kotlin.collections.contains
+import kotlin.collections.flatMap
+import kotlin.collections.indices
+import kotlin.collections.isNotEmpty
+import kotlin.collections.last
+import kotlin.collections.map
+import kotlin.collections.mutableListOf
+import kotlin.collections.mutableMapOf
+import kotlin.collections.set
+import kotlin.collections.toMap
+import kotlin.collections.toMutableMap
 
 class Day15 : Solution<List<String>>() {
     override fun parse(lines: List<String>) = lines

@@ -1,9 +1,9 @@
 package advent.calendar.aoc.solutions.y2021
 
 import advent.calendar.aoc.Solution
-import advent.calendar.aoc.solutions.utils.Point
-import advent.calendar.aoc.solutions.utils.around
 import advent.calendar.aoc.solutions.utils.extend
+import advent.calendar.aoc.solutions.utils.geom.Point
+import advent.calendar.aoc.solutions.utils.geom.around
 
 class Day20 : Solution<List<String>>() {
     override fun parse(lines: List<String>) = lines
