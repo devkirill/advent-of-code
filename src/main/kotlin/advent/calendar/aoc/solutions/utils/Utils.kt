@@ -307,3 +307,11 @@ fun <T> Sequence<T>.pairs(): Sequence<Pair<T, T>> {
         }
     }
 }
+
+fun <T> Collection<T>.toCountMap(): Map<T, Int> {
+    val result = mutableMapOf<T, Int>()
+    forEach {
+        result[it] = (result[it] ?: 0) + 1
+    }
+    return result
+}
