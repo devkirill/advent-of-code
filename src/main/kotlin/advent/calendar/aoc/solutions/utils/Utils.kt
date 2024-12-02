@@ -315,3 +315,7 @@ fun <T> Collection<T>.toCountMap(): Map<T, Int> {
     }
     return result
 }
+
+fun <T> List<T>.removeAt(idx: Int): List<T> {
+    return subList(0, idx) + subList(idx + 1, size)
+}
