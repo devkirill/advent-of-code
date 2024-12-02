@@ -17,7 +17,7 @@ fun createDirIfNotExist(dir: File) {
 }
 
 object AOC {
-    val cookie = System.getenv()["cookie"] ?: System.getProperty("cookie") ?: TODO("COOKIES!!!")
+    val cookie = (System.getenv()["cookie"] ?: System.getProperty("cookie") ?: TODO("COOKIES!!!")).trim()
 
     fun input(year: Int, day: Int): List<String> {
         val file = File("input/$year/$day.txt")
@@ -32,7 +32,7 @@ object AOC {
 
     fun getInputs(year: Int, day: Int, part: Int): Pair<List<List<String>>, List<String>> {
         val doc = Jsoup.connect("https://adventofcode.com/$year/day/$day")
-            .cookie("cookie", cookie)
+            .header("cookie", cookie)
             .get()
         val inputs = doc.select("main > .day-desc pre code:not(:has(em))").map { it.text() }
         val answers = if (part == 1)
