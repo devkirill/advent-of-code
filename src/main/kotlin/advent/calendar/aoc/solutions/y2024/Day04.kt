@@ -22,8 +22,8 @@ class Day04 : Solution<Map<Point, Char>>() {
     override fun part2(input: Map<Point, Char>): Any {
         return input.keys
             .filter { x ->
-                input.getValue(x) == 'A' && Point(0, 0).nearby4Diag().map { input.getValue(x + it) }
-                    .joinToString("") in listOf("MMSS", "MSSM", "SSMM", "SMMS")
+                input.getValue(x) == 'A' && Point(0, 0).nearby4Diag()
+                    .joinToString("") { "${input.getValue(x + it)}" } in listOf("MMSS", "MSSM", "SSMM", "SMMS")
             }
             .size
     }
