@@ -44,6 +44,7 @@ fun intersect(a: Point, b: Point, c: Point, d: Point): Boolean {
 }
 
 fun Point.nearby4() = listOf(Point(-1, 0), Point(1, 0), Point(0, -1), Point(0, 1)).map { this + it }
+fun Point.nearby4Diag() = listOf(Point(-1, -1), Point(1, -1), Point(1, 1), Point(-1, 1)).map { this + it }
 fun Point.around() = (-1..1)
     .flatMap { y -> (-1..1).map { x -> Point(x, y) } }
     .map { this + it }

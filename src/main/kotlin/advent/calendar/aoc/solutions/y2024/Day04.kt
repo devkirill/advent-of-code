@@ -2,6 +2,7 @@ package advent.calendar.aoc.solutions.y2024
 
 import advent.calendar.aoc.Solution
 import advent.calendar.aoc.solutions.utils.geom.Point
+import advent.calendar.aoc.solutions.utils.geom.nearby4Diag
 import advent.calendar.aoc.solutions.utils.geom.nearby8
 
 class Day04 : Solution<Map<Point, Char>>() {
@@ -19,12 +20,10 @@ class Day04 : Solution<Map<Point, Char>>() {
     }
 
     override fun part2(input: Map<Point, Char>): Any {
-        val mas = listOf("MS", "SM")
         return input.keys
-            .filter {
-                input.getValue(it) == 'A' &&
-                        "${input.getValue(it + Point(-1, -1))}${input.getValue(it + Point(1, 1))}" in mas &&
-                        "${input.getValue(it + Point(-1, 1))}${input.getValue(it + Point(1, -1))}" in mas
+            .filter { x ->
+                input.getValue(x) == 'A' && Point(0, 0).nearby4Diag().map { input.getValue(x + it) }
+                    .joinToString("") in listOf("MMSS", "MSSM", "SSMM", "SMMS")
             }
             .size
     }
