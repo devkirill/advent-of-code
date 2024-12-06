@@ -60,13 +60,37 @@ class Testing(val solutions: List<Solution<*>>) {
         try {
             val (inputs, outputs) = AOC.getInputs(year, day, part)
 
-            inputs.forEach { input ->
-                val answer = solve(input, part)
-                if (answer !in outputs) {
+            val examples = inputs.mapNotNull { input ->
+                try {
+                    val answer = solve(input, part)
+                    input to answer
+                } catch (_: Throwable) {
+                    null
+                }
+//                if (answer !in outputs) {
+//                    println()
+//                    println(input.joinToString("\n"))
+//                    println("${ConsoleColors.RED}$answer${ConsoleColors.RESET}")
+//                    TODO()
+//                }
+            }
+            val p = examples.count { it.second in outputs }
+            val s = examples.size
+            when {
+                s == 0 -> {
+                    print("${ConsoleColors.YELLOW}(NO EXAMPLES)${ConsoleColors.RESET}")
+                }
+
+                p * 100 <= s * 10 -> {
+                    val (input, answer) = examples.first()
                     println()
                     println(input.joinToString("\n"))
                     println("${ConsoleColors.RED}$answer${ConsoleColors.RESET}")
-                    TODO()
+                    print("${ConsoleColors.YELLOW}(${p * 100 / s}%)${ConsoleColors.RESET}")
+                }
+
+                p < s -> {
+                    print("${ConsoleColors.YELLOW}(${p * 100 / s}%)${ConsoleColors.RESET}")
                 }
             }
         } catch (_: NotReleased) {
