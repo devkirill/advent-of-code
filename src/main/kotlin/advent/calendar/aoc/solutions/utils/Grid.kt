@@ -6,6 +6,8 @@ import advent.calendar.aoc.solutions.utils.geom.Point
 data class Grid(val size: Point, val data: Map<Point, String>, val default: (Point) -> String = { "" }) {
     operator fun get(p: Point) = data[p] ?: default(p)
 
+    val keys = data.keys
+
     fun find(value: String) = data.filterValues { value == it }.keys
     fun find(check: (String) -> Boolean) = data.filterValues { check(it) }.keys
 
