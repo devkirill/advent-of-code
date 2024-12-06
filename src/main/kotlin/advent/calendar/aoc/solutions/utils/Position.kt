@@ -7,6 +7,9 @@ data class Position(val p: Point, var dir: Int) {
         dir %= 4
     }
 
+    val x = p.x
+    val y = p.y
+
     val shift = when (dir) {
         0 -> Point(1, 0)
         1 -> Point(0, 1)
