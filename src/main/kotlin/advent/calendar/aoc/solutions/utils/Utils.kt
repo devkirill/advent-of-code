@@ -320,3 +320,12 @@ fun <T> Collection<T>.toCountMap(): Map<T, Int> {
 fun <T> List<T>.removeAt(idx: Int): List<T> {
     return subList(0, idx) + subList(idx + 1, size)
 }
+
+fun <T> Collection<T>.zipAllPairs(): Sequence<Pair<T, T>> = sequence {
+    val l = toList()
+    for (i in indices) {
+        for (j in (i + 1) until size) {
+            yield(l[i] to l[j])
+        }
+    }
+}
