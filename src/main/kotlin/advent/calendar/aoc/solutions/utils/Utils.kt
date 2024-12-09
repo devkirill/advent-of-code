@@ -329,3 +329,11 @@ fun <T> Collection<T>.zipAllPairs(): Sequence<Pair<T, T>> = sequence {
         }
     }
 }
+
+fun <T> Collection<T>.repeat(num: Int): List<T> {
+    val list = mutableListOf<T>()
+    repeat(num) {
+        list += this
+    }
+    return list
+}
