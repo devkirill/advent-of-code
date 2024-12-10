@@ -44,7 +44,7 @@ class Day06 : Solution<Data>() {
     ) {
         companion object {
             val dirs = listOf(">", "v", "<", "^")
-            operator fun invoke(grid: Grid): Data {
+            operator fun invoke(grid: Grid<String>): Data {
                 return Data(
                     walls = grid.find("#"),
                     officer = grid.find { it in dirs }.let { it.single().let { Position(it, dirs.indexOf(grid[it])) } },

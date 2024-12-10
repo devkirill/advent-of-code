@@ -6,10 +6,10 @@ import advent.calendar.aoc.solutions.utils.geom.Point
 import advent.calendar.aoc.solutions.utils.geom.nearby4Diag
 import advent.calendar.aoc.solutions.utils.geom.nearby8
 
-class Day04 : Solution<Grid>() {
+class Day04 : Solution<Grid<String>>() {
     override fun parse(lines: List<String>) = Grid(lines) { "." }
 
-    override fun part1(input: Grid): Int {
+    override fun part1(input: Grid<String>): Int {
         val shifts = Point(0, 0).nearby8()
         return input.keys
             .flatMap { p ->
@@ -19,7 +19,7 @@ class Day04 : Solution<Grid>() {
             .size
     }
 
-    override fun part2(input: Grid): Any {
+    override fun part2(input: Grid<String>): Any {
         return input.keys
             .filter { x ->
                 input[x] == "A" && Point(0, 0).nearby4Diag().joinToString("") { input[x + it] } in listOf(
