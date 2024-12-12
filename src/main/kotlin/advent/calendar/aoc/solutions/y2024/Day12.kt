@@ -49,7 +49,6 @@ class Day12 : Solution<Grid<String>>() {
                 val n = dir.rotateCW().nextPos
                 return group.count { (it + d) !in group && ((it + n) !in group || (it + d + n) in group) }
             }
-
             val p = (0 until 4).map { Position(Point(0, 0), dir = it) }.sumOf { calc(it) }
             s * p
         }
