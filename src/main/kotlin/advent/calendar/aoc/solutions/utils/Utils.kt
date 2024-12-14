@@ -337,3 +337,5 @@ fun <T> Collection<T>.repeat(num: Int): List<T> {
     }
     return list
 }
+
+fun Collection<String>.toInt() = map{it.toInt()}
