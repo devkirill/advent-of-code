@@ -72,10 +72,10 @@ class Day15 : Solution<Game>() {
                 queue.add(c)
             }
             if (grid[c] == "[") {
-                queue.add(c + Point(1, 0) - Point(0, 0).move(dir))
+                queue.add(c + Point(1, 0) - Point.ZERO.move(dir))
             }
             if (grid[c] == "]") {
-                queue.add(Point(-1, 0) - Point(0, 0).move(dir) + c)
+                queue.add(c + Point(-1, 0) - Point.ZERO.move(dir))
             }
         }
         val d = group.map { it to "." } + group.map { it.move(dir) to grid[it] }
