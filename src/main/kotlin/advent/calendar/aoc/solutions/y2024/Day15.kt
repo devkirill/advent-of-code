@@ -65,14 +65,6 @@ class Day15 : Solution<Game>() {
             if (c in visited) continue
             visited += c
             if (grid[c] == "#") {
-//                println(
-//                    grid.copy(
-//                        data = grid.data + mapOf(
-//                            robot to red("@"),
-//                            robot.move(dir) to cyan(">v<^"[dir].toString())
-//                        )
-//                    )
-//                )
                 return this
             }
             if (grid[c] != ".") {
@@ -88,7 +80,6 @@ class Day15 : Solution<Game>() {
         }
         val d = group.map { it to "." } + group.map { it.move(dir) to grid[it] }
         val g = grid.copy(data = grid.data + d.toMap())
-//        println(g.copy(data = g.data + mapOf(robot to red("@"), robot.move(dir) to cyan(">v<^"[dir].toString()))))
         return g to robot.move(dir)
     }
 
