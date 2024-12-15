@@ -22,3 +22,5 @@ data class Position(val p: Point, var dir: Int) {
     fun rotateCW() = Position(p, dir + 1)
     fun rotateCCW() = Position(p, dir + 3)
 }
+
+fun Point.move(dir: Int) = Position(this, dir).nextPos
