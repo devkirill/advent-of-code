@@ -6,6 +6,15 @@ fun <T> dijkstraSearch(
     startingPoints: List<T>,
     neighborProducer: (T) -> List<T>,
     distanceFunction: (T) -> Int,
+): DijkstraResult<T> =
+    dijkstraSearch(startingPoints) { cur ->
+        val near = neighborProducer(cur)
+        near.map { it to distanceFunction(it) }
+    }
+
+fun <T> dijkstraSearch(
+    startingPoints: List<T>,
+    neighborProducer: (T) -> List<Pair<T, Int>>,
 ): DijkstraResult<T> {
     data class State(val node: T, val distance: Int, val prev: State?)
 
@@ -17,14 +26,23 @@ fun <T> dijkstraSearch(
     while (boundary.isNotEmpty()) {
         val state = boundary.poll()
         val (currentNode, currentDistance) = state
-        if (currentNode in bestDistance) continue
+        if (currentNode in bestDistance) {
+            if (bestDistance[currentNode] == currentDistance) {
+                state.prev?.node?.let {
+                    bestDistance.prevs.computeIfAbsent(currentNode) { mutableListOf<T>() }.add(it)
+                }
+            }
+            continue
+        } else {
+            bestDistance[currentNode] = currentDistance
+            state.prev?.node?.let {
+                bestDistance.prevs.computeIfAbsent(currentNode) { mutableListOf<T>() }.add(it)
+            }
+        }
 
-        bestDistance[currentNode] = currentDistance
-        bestDistance.prevs[currentNode] = state.prev?.node
-
-        for (nextNode in neighborProducer(currentNode)) {
+        for ((nextNode, dist) in neighborProducer(currentNode)) {
             if (nextNode !in bestDistance) {
-                boundary += State(nextNode, currentDistance + distanceFunction(nextNode), state)
+                boundary += State(nextNode, currentDistance + dist, state)
             }
         }
     }
@@ -33,14 +51,14 @@ fun <T> dijkstraSearch(
 }
 
 class DijkstraResult<T>() : LinkedHashMap<T, Int>() {
-    val prevs = mutableMapOf<T, T?>()
+    val prevs = mutableMapOf<T, MutableList<T>>()
 
     fun getPathTo(pos: T): List<T> {
         return sequence {
             var cur: T? = pos
             while (cur != null) {
                 yield(cur)
-                cur = prevs[cur]
+                cur = prevs[cur]?.firstOrNull()
             }
         }.toList()
     }
