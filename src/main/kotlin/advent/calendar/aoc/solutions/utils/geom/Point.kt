@@ -23,6 +23,8 @@ data class Point(val x: Int, val y: Int) {
         fun build() = Point(x, y)
     }
 
+    override fun toString() = "$x,$y"
+
     companion object {
         val ZERO = Point(0, 0)
     }
@@ -56,3 +58,5 @@ fun Point.nearby8() = (-1..1)
 
 infix fun Point.chebyshevDistance(p: Point) = (this - p).let { max(abs(it.x), abs(it.y)) }
 infix fun Point.manhattanDistance(p: Point) = (this - p).let { abs(it.x) + abs(it.y) }
+
+operator fun IntRange.contains(p: Point) = p.x in this && p.y in this
