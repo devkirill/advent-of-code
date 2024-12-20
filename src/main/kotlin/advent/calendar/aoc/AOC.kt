@@ -35,8 +35,9 @@ object AOC {
             .header("cookie", cookie)
             .get()
         val inputs = //doc.select("main > .day-desc pre code").map { it.text() }
-            doc.select("main > .day-desc pre code:not(:has(em))").map { it.text() }
-                .ifEmpty { doc.select("main > .day-desc pre code").map { it.text() } }
+            doc.select("main > .day-desc pre code").map { it.text() }
+//            doc.select("main > .day-desc pre code:not(:has(em))").map { it.text() }
+//                .ifEmpty { doc.select("main > .day-desc pre code").map { it.text() } }
         val answers = if (part == 1)
             doc.select("main > .day-desc:not(:has(#part2)) p > code > em").map { it.text() }
         else
