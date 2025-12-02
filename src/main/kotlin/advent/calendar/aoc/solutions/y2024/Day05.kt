@@ -9,7 +9,7 @@ class Day05 : Solution<Data>() {
     override fun parse(lines: List<String>) = lines.splitEmptyLine()
         .let { (list, list2) ->
             Data(
-                list.map { it.split("|").map { it.toInt() }.toPair() },
+                list.map { it.split("|").map { it.toInt() }.toPair },
                 list2.map { it.split(",").map { it.toInt() } }
             )
         }

@@ -72,7 +72,7 @@ operator fun <T> List<List<T>>.get(p: Point) = this[p.x][p.y]
 
 fun List<String>.toInt() = this.map { it.toInt() }
 fun List<Int>.toPoint() = Point(this[0], this[1])
-fun <T> List<T>.toPair() = Pair(first(), last())
+val <T> List<T>.toPair get() = Pair(first(), last())
 fun List<String>.toIntPoint() = this.toInt().toPoint()
 fun List<String>.toIntPoints(delimiter: String) = this.map { it.split(delimiter).toIntPoint() }
 fun String.splitPair(delimiter: String): Pair<String, String> {
