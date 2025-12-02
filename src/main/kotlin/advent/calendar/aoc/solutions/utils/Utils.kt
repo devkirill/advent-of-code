@@ -339,3 +339,5 @@ fun <T> Collection<T>.repeat(num: Int): List<T> {
 }
 
 fun Collection<String>.toInt() = map{it.toInt()}
+
+fun Iterable<BigInteger>.sum() = reduce { a, b -> a + b }
